@@ -3,6 +3,7 @@ from flask import Blueprint
 # from main import bcrypt
 from models.users import User
 from models.threads import Thread
+from models.comments import Comment
 from datetime import date
 
 db_commands = Blueprint("db", __name__)
@@ -14,7 +15,6 @@ def create_db():
 
 @db_commands .cli.command("seed")
 def seed_db():
-
     # Admin user
     admin_user = User(
         name = "Admin",
@@ -69,6 +69,31 @@ def seed_db():
         link = "https://realpython.com/python3-object-oriented-programming/"
     )
     db.session.add(thread3)
+
+    # Comment 1
+    comment1 = Comment(
+        date = date.today(),
+        rating = 5,
+        review = "I really found this one helpful, thanks!"
+    )
+    db.session.add(comment1)
+
+    # Comment 2
+    comment2 = Comment(
+        date = date.today(),
+        rating = 2,
+        review = "This one didn't really do it for me"
+    )
+    db.session.add(comment2)
+
+    # Comment 3
+    comment3 = Comment(
+        date = date.today(),
+        rating = 4,
+        review = "Good resource. Had to do extra research on this but overall quite a good guide!"
+    )
+    db.session.add(comment3)
+    
     # commit the changes
     db.session.commit()
     print("Table seeded") 

@@ -6,7 +6,7 @@ from schemas.thread_schema import thread_schema, threads_schema
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
 @threads.route("/", methods=["GET"])
-def get_users():
+def get_threads():
     stmt = db.select(Thread)
     threads_list = db.session.scalars(stmt)
     result = threads_schema.dump(threads_list)
