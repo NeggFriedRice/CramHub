@@ -49,7 +49,6 @@ def update_thread(id):
         )
     else:
         abort(400, "Thread not found")
-    
 
 # Delete existing thread
 @threads.route('/<int:id>', methods=['DELETE'])

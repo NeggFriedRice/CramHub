@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request, abort
 from main import db
 from models.comments import Comment
-from schemas.comment_schema import comment_schema, comments_schema
+from schemas.comment_schema import CommentSchema
+from datetime import date
 
 comments = Blueprint('comments', __name__, url_prefix='/comments')
 
@@ -9,6 +10,54 @@ comments = Blueprint('comments', __name__, url_prefix='/comments')
 def get_comments():
     stmt = db.select(Comment)
     comments_list = db.session.scalars(stmt)
-    result = comments_schema.dump(comments_list)
+    result = CommentSchema(many=True).dump(comments_list)
 
     return jsonify(result)
+
+# Create new comment
+@comments.route("/", methods=["POST"])
+def create_thread():
+    comment_fields = CommentSchema(exclude=['id', 'date']).load(request.json)
+    new_comment = Comment()
+    new_comment.rating = comment_fields["rating"]
+    new_comment.review = comment_fields["review"]
+    new_comment.date = date.today()
+
+    db.session.add(new_comment)
+    db.session.commit()
+    return jsonify(
+        CommentSchema().dump(new_comment),
+        "Comment submitted!"), 201
+
+# Update existing comment
+@comments.route('/<int:id>', methods=['PUT', 'PATCH'])
+def update_comment(id):
+    comment_info = CommentSchema(exclude=['date']).load(request.json)
+    stmt = db.select(Comment).filter_by(id=id)
+    comment = db.session.scalar(stmt)
+    if comment:
+        comment.rating = comment_info.get('rating', comment.rating)
+        comment.review = comment_info.get('review', comment.review)
+        db.session.commit()
+        return jsonify(
+            CommentSchema().dump(comment),
+            f"Comment with ID: '{comment.id}' has been updated"
+        )
+    else:
+        abort(400, "Comment not found")
+
+# Delete existing comment
+@comments.route('/<int:id>', methods=['DELETE'])
+def delete_comment(id):
+    stmt = db.select(Comment).filter_by(id=id)
+    comment = db.session.scalar(stmt)
+
+    if not comment:
+        abort(400, description="Comment not found")
+
+    db.session.delete(comment)
+    db.session.commit()
+    return jsonify(
+        CommentSchema().dump(comment),
+        f"Comment with ID: '{comment.id}' deleted"
+    )
