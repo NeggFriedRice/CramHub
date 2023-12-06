@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
-from main import db
-from models.threads import Thread
-from schemas.thread_schema import ThreadSchema
+from init import db
+from models.threads import Thread, ThreadSchema
 from datetime import date
 
 threads = Blueprint('threads', __name__, url_prefix='/threads')

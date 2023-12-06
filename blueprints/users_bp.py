@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
-from main import db
-from models.users import User
-from schemas.user_schema import UserSchema
+from init import db
+from models.users import User, UserSchema
 
 users = Blueprint('users', __name__, url_prefix='/users')
 

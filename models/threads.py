@@ -1,4 +1,4 @@
-from main import db
+from init import db, ma
 
 
 class Thread(db.Model):
@@ -10,3 +10,8 @@ class Thread(db.Model):
     date = db.Column(db.Date)
     description = db.Column(db.String(), nullable=False)
     link = db.Column(db.String())
+
+# Create thread schema with Marshmallow
+class ThreadSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "category", "title", "date", "description", "link")

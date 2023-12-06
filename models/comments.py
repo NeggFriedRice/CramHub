@@ -1,4 +1,4 @@
-from main import db
+from init import db, ma
 
 
 class Comment(db.Model):
@@ -8,3 +8,9 @@ class Comment(db.Model):
     date = db.Column(db.Date)
     rating = db.Column(db.Integer)
     review = db.Column(db.String())
+
+# Create comment schema with Marshmallow
+class CommentSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "date", "rating", "review")
+

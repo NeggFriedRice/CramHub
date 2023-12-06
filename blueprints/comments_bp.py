@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request, abort
-from main import db
-from models.comments import Comment
-from schemas.comment_schema import CommentSchema
+from init import db
+from models.comments import Comment, CommentSchema
 from datetime import date
 
 comments = Blueprint('comments', __name__, url_prefix='/comments')

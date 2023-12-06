@@ -1,10 +1,10 @@
 from main import db
 from flask import Blueprint
-# from main import bcrypt
 from models.users import User
 from models.threads import Thread
 from models.comments import Comment
 from datetime import date
+from main import bcrypt
 
 db_commands = Blueprint("db", __name__)
 
@@ -18,6 +18,7 @@ def seed_db():
     # Admin user
     admin_user = User(
         name = "Admin",
+        password = "password",
         email = "admin@cramhub.com",
         cohort = "Admin Team",
         admin = True
@@ -27,6 +28,7 @@ def seed_db():
     # User 1
     user1 = User(
         name = "Ayrton Senna",
+        password = "honda4eva",
         email = "senna@gmail.com",
         cohort = "2023 September Accelerated",
     )
@@ -35,6 +37,7 @@ def seed_db():
     # User 2
     user2 = User(
         name = "Harry Potter",
+        password = "hunter2",
         email = "xXhazza_pXx@owlmail.com",
         cohort = "2022 May Standard",
     )
