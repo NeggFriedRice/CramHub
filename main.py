@@ -14,4 +14,6 @@ def create_app():
     # Creating our database object
     db.init_app(app)
 
+    from commands import db_commands
+    app.register_blueprint(db_commands)
     return app
