@@ -1,6 +1,6 @@
 from main import ma
 
-# Create the user with Marshmallow
+# Create user with Marshmallow
 class UserSchema(ma.Schema):
     class Meta:
         fields = ("id", "name", "email", "cohort")
