@@ -28,7 +28,7 @@ def create_thread():
     db.session.commit()
     return jsonify(
         ThreadSchema().dump(new_thread),
-        "Thread submitted!"), 201
+        {"CramHub Message": "Thread submitted!"}), 201
 
 # Update existing thread
 @threads.route('/<int:id>', methods=['PUT', 'PATCH'])
@@ -44,8 +44,7 @@ def update_thread(id):
         db.session.commit()
         return jsonify(
             ThreadSchema().dump(thread),
-            f"Thread '{thread.title}' has been updated"
-        )
+            {"CramHub Message": f"Thread '{thread.title}' has been updated"})
     else:
         abort(400, "Thread not found")
 
@@ -62,5 +61,4 @@ def delete_thread(id):
     db.session.commit()
     return jsonify(
         ThreadSchema().dump(thread),
-        f"Thread '{thread.title}' deleted"
-    )
+        {"CramHub Message": f"Thread '{thread.title}' deleted"})

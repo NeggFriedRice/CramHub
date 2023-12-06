@@ -26,11 +26,12 @@ def create_thread():
     db.session.commit()
     return jsonify(
         CommentSchema().dump(new_comment),
-        "Comment submitted!"), 201
+        {" CramHub Message": "Comment submitted!"}), 201
 
 # Update existing comment
 @comments.route('/<int:id>', methods=['PUT', 'PATCH'])
 def update_comment(id):
+
     comment_info = CommentSchema(exclude=['date']).load(request.json)
     stmt = db.select(Comment).filter_by(id=id)
     comment = db.session.scalar(stmt)
@@ -40,10 +41,10 @@ def update_comment(id):
         db.session.commit()
         return jsonify(
             CommentSchema().dump(comment),
-            f"Comment with ID: '{comment.id}' has been updated"
+            {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated"}
         )
     else:
-        abort(400, "Comment not found")
+        return {'Error encountered': 'Comment not found'}, 404
 
 # Delete existing comment
 @comments.route('/<int:id>', methods=['DELETE'])
@@ -58,5 +59,5 @@ def delete_comment(id):
     db.session.commit()
     return jsonify(
         CommentSchema().dump(comment),
-        f"Comment with ID: '{comment.id}' deleted"
+        {"CramHub Message": f"Comment with ID: '{comment.id}' deleted"}
     )

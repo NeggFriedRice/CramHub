@@ -6,7 +6,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    password = db.Column(db.String(30), nullable=False)
+    password = db.Column(db.String(), nullable=False)
     email = db.Column(db.String(), nullable=False, unique=True)
     cohort = db.Column(db.String(), nullable=False)
     admin = db.Column(db.Boolean(), default=False)
@@ -14,5 +14,5 @@ class User(db.Model):
 # Create user schema with Marshmallow
 class UserSchema(ma.Schema):
     class Meta:
-        fields = ("id", "name", "password", "email", "cohort")
+        fields = ("id", "name", "password", "email", "cohort", "admin")
         password = ma.String(validate=Length(min=6))

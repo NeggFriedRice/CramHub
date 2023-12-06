@@ -18,7 +18,7 @@ def seed_db():
     # Admin user
     admin_user = User(
         name = "Admin",
-        password = "password",
+        password = bcrypt.generate_password_hash("password").decode("utf-8"),
         email = "admin@cramhub.com",
         cohort = "Admin Team",
         admin = True
@@ -28,7 +28,7 @@ def seed_db():
     # User 1
     user1 = User(
         name = "Ayrton Senna",
-        password = "honda4eva",
+        password = bcrypt.generate_password_hash("honda4eva").decode("utf-8"),
         email = "senna@gmail.com",
         cohort = "2023 September Accelerated",
     )
@@ -37,7 +37,7 @@ def seed_db():
     # User 2
     user2 = User(
         name = "Harry Potter",
-        password = "hunter2",
+        password = bcrypt.generate_password_hash("hunter2").decode("utf-8"),
         email = "xXhazza_pXx@owlmail.com",
         cohort = "2022 May Standard",
     )
