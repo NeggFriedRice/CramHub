@@ -41,10 +41,9 @@ def update_comment(id):
         db.session.commit()
         return jsonify(
             CommentSchema().dump(comment),
-            {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated"}
-        )
+            {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated"})
     else:
-        return {'Error encountered': 'Comment not found'}, 404
+        return {'CramHub Message': 'Comment not found'}, 404
 
 # Delete existing comment
 @comments.route('/<int:id>', methods=['DELETE'])
@@ -59,5 +58,4 @@ def delete_comment(id):
     db.session.commit()
     return jsonify(
         CommentSchema().dump(comment),
-        {"CramHub Message": f"Comment with ID: '{comment.id}' deleted"}
-    )
+        {"CramHub Message": f"Comment with ID: '{comment.id}' deleted"})

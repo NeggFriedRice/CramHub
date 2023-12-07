@@ -6,6 +6,7 @@ from models.comments import Comment
 from datetime import date
 from main import bcrypt
 
+
 db_commands = Blueprint("db", __name__)
 
 @db_commands .cli.command("create")
@@ -97,7 +98,7 @@ def seed_db():
     )
     db.session.add(comment3)
     
-    # commit the changes
+    # Commit the added entries
     db.session.commit()
     print("Table seeded") 
 

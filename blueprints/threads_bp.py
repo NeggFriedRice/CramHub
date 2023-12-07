@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, abort
+from flask import Blueprint, jsonify, request
 from init import db
 from models.threads import Thread, ThreadSchema
 from datetime import date
@@ -10,7 +10,6 @@ def get_threads():
     stmt = db.select(Thread)
     threads_list = db.session.scalars(stmt)
     result = ThreadSchema(many=True).dump(threads_list)
-
     return jsonify(result)
 
 # Create new thread
@@ -46,7 +45,7 @@ def update_thread(id):
             ThreadSchema().dump(thread),
             {"CramHub Message": f"Thread '{thread.title}' has been updated"})
     else:
-        abort(400, "Thread not found")
+        return {"CramHub Message": "Thread not found"}, 404
 
 # Delete existing thread
 @threads.route('/<int:id>', methods=['DELETE'])

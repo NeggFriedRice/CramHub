@@ -24,6 +24,14 @@ def setup():
     ma.init_app(app)
     jwt.init_app(app)
     bcrypt.init_app(app)
+    jwt.init_app(app)
+
+    # Register blueprints
+    app.register_blueprint(db_commands)
+    app.register_blueprint(users)
+    app.register_blueprint(auth)
+    app.register_blueprint(threads)
+    app.register_blueprint(comments)
 
     # Error handling
     @app.errorhandler(IntegrityError)
@@ -31,10 +39,5 @@ def setup():
         return {'error': str(err)}, 409
 
    
-    app.register_blueprint(db_commands)
-    app.register_blueprint(users)
-    app.register_blueprint(auth)
-    app.register_blueprint(threads)
-    app.register_blueprint(comments)
 
     return app
