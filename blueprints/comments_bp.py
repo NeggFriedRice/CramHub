@@ -41,7 +41,7 @@ def update_comment(id):
         db.session.commit()
         return jsonify(
             CommentSchema().dump(comment),
-            {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated"})
+            {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated! 🙂"})
     else:
         return {'CramHub Message': 'Comment not found'}, 404
 
@@ -52,10 +52,10 @@ def delete_comment(id):
     comment = db.session.scalar(stmt)
 
     if not comment:
-        abort(400, description="Comment not found")
+        return {"CramHub Message": "Comment not found! 😯"}
 
     db.session.delete(comment)
     db.session.commit()
     return jsonify(
         CommentSchema().dump(comment),
-        {"CramHub Message": f"Comment with ID: '{comment.id}' deleted"})
+        {"CramHub Message": f"Comment with ID: '{comment.id}' deleted! 🙂"})

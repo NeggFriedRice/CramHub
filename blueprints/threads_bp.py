@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
 from init import db
 from models.threads import Thread, ThreadSchema
+from models.users import User, UserSchema
 from datetime import date
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
@@ -14,6 +16,7 @@ def get_threads():
 
 # Create new thread
 @threads.route("/", methods=["POST"])
+@jwt_required()
 def create_thread():
     thread_fields = ThreadSchema(exclude=['id', 'date']).load(request.json)
     new_thread = Thread()
@@ -31,6 +34,7 @@ def create_thread():
 
 # Update existing thread
 @threads.route('/<int:id>', methods=['PUT', 'PATCH'])
+@jwt_required()
 def update_thread(id):
     thread_info = ThreadSchema(exclude=['id', 'date']).load(request.json)
     stmt = db.select(Thread).filter_by(id=id)
@@ -49,15 +53,23 @@ def update_thread(id):
 
 # Delete existing thread
 @threads.route('/<int:id>', methods=['DELETE'])
+@jwt_required()
 def delete_thread(id):
+    user_id = get_jwt_identity()
+
+    stmt = db.select(User).filter_by(id=user_id)
+    user = db.session.scalar(stmt)
+
+    if not user or not user.admin:
+        return {'CramHub Message': "You can't delete this thread 😔"}
+
     stmt = db.select(Thread).filter_by(id=id)
     thread = db.session.scalar(stmt)
-
     if not thread:
-        abort(400, description="Thread not found")
+        return {"CramHub Message": "Thread not found 😯"}
 
     db.session.delete(thread)
     db.session.commit()
     return jsonify(
         ThreadSchema().dump(thread),
-        {"CramHub Message": f"Thread '{thread.title}' deleted"})
+        {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})

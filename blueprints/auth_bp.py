@@ -17,6 +17,7 @@ def register():
         user.password = bcrypt.generate_password_hash(user_fields['password']).decode("utf-8")
         user.email = user_fields['email']
         user.cohort = user_fields['cohort']
+        user.admin = False
 
         db.session.add(user)
         db.session.commit()
@@ -26,11 +27,11 @@ def register():
 
         return jsonify(
             UserSchema(exclude=['password', 'admin']).dump(user),
-            {'CramHub Message': f"User {user.name} has been registered"},
+            {'CramHub Message': f"User {user.name} has been registered! 🙂"},
             {'Access token': access_token}), 201
     
     except IntegrityError:
-        return {'Error encountered': 'This user already exists'}, 409
+        return {'Error encountered': 'This user already exists😯'}, 409
     
 @auth.route('/login', methods=['POST'])
 def login():
@@ -39,12 +40,12 @@ def login():
     user = db.session.scalar(stmt)
 
     if not user or not bcrypt.check_password_hash(user.password, user_fields['password']):
-        return {"CramHUB Message": "Invalid username or password!"}, 401
+        return {"CramHUB Message": "Invalid username or password! 😯"}, 401
     
     expiry = timedelta(hours=6)
 
     access_token = create_access_token(identity=str(user.id), expires_delta=expiry)
 
     return jsonify({"user": user.email, "token": access_token},
-                   {"CramHub Message": "Successfully logged in!"})
+                   {"CramHub Message": "Successfully logged in! 🙂"})
     
