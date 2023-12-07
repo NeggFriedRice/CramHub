@@ -43,6 +43,7 @@ def seed_db():
         cohort = "2022 May Standard",
     )
     db.session.add(user2)
+    db.session.commit()
 
     # Thread 1
     thread1 = Thread(
@@ -50,7 +51,8 @@ def seed_db():
         title = "HTML Basics",
         date = date.today(),
         description = "Good introduction to HTML5 that really helped me understand the basics of what HTML is and what we can do with it",
-        link = "https://www.youtube.com/watch?v=8_YadxRXGaA"
+        link = "https://www.youtube.com/watch?v=8_YadxRXGaA",
+        user_id = user1.id
     )
     db.session.add(thread1)
 
@@ -60,7 +62,8 @@ def seed_db():
         title = "Cool animations with CSS",
         date = date.today(),
         description = "Found this website that has a list of cool animations you can do with CSS. Will be adding some of these to my portfolio",
-        link = "https://www.w3schools.com/css/css3_animations.asp"
+        link = "https://www.w3schools.com/css/css3_animations.asp",
+        user_id = user1.id
     )
     db.session.add(thread2)
 
@@ -70,7 +73,8 @@ def seed_db():
         title = "Python Object Oriented Programming 101 with worked examples",
         date = date.today(),
         description = "I felt myself struggling with getting my head around OOP during class but the examples in this walkthrough were good! Hope this can help someone else too!",
-        link = "https://realpython.com/python3-object-oriented-programming/"
+        link = "https://realpython.com/python3-object-oriented-programming/",
+        user_id = user2.id
     )
     db.session.add(thread3)
 

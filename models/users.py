@@ -10,6 +10,11 @@ class User(db.Model):
     email = db.Column(db.String(), nullable=False, unique=True)
     cohort = db.Column(db.String(), nullable=False)
     admin = db.Column(db.Boolean(), default=False)
+    threads = db.relationship(
+        "Thread",
+        back_populates="user",
+        cascade="all, delete"
+    )
 
 # Create user schema with Marshmallow
 class UserSchema(ma.Schema):
