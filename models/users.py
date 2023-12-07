@@ -18,13 +18,6 @@ class User(db.Model):
 class UserSchema(ma.Schema):
     class Meta:
         ordered = True
-        fields = ("id", "name", "password", "email", "cohort", "admin")
-        password = ma.String(validate=Length(min=6))
-
- # Create user schema for threads view       
-class UserSchemaNested(ma.Schema):
-    class Meta:
-        ordered = True
         fields = ("id", "name", "password", "email", "cohort", "admin", "threads", "comments")
         password = ma.String(validate=Length(min=6))
     threads = fields.List(fields.Nested("ThreadSchema", exclude=["user"]))

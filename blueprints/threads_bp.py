@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from init import db
 from models.threads import Thread, ThreadSchema
-from models.users import User, UserSchema, UserSchemaNested
+from models.users import User, UserSchema
 from datetime import date
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -12,14 +12,6 @@ def get_threads():
     stmt = db.select(Thread)
     threads_list = db.session.scalars(stmt)
     result = ThreadSchema(many=True).dump(threads_list)
-    return jsonify(result)
-
-# Get all threads made by users
-@threads.route("/users", methods=["GET"])
-def get_users_threads():
-    stmt = db.select(User)
-    users_list = db.session.scalars(stmt)
-    result = UserSchemaNested(many=True, exclude=["password", "admin", "id"]).dump(users_list)
     return jsonify(result)
 
 # Create new thread

@@ -19,4 +19,4 @@ class ThreadSchema(ma.Schema):
     class Meta:
         ordered = True
         fields = ("id", "category", "title", "date", "user", "description", "link")
-    user = fields.Nested("UserSchemaNested", only=["name"])
+    user = fields.Nested("UserSchema", only=["name"])

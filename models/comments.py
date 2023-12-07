@@ -17,4 +17,4 @@ class CommentSchema(ma.Schema):
     class Meta:
         ordered = True
         fields = ("id", "date", "rating", "user", "review")
-    user = fields.Nested("UserSchemaComments", only=["name"])
+    user = fields.Nested("UserSchema", only=["name"])
