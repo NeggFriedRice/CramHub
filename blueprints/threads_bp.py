@@ -8,7 +8,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
 @threads.route("/", methods=["GET"])
-def get_threads():
+def get_all_threads():
     stmt = db.select(Thread)
     threads_list = db.session.scalars(stmt)
     result = ThreadSchema(many=True).dump(threads_list)

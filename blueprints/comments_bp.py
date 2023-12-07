@@ -7,7 +7,7 @@ from datetime import date
 comments = Blueprint('comments', __name__, url_prefix='/comments')
 
 @comments.route("/", methods=["GET"])
-def get_comments():
+def get_all_comments():
     stmt = db.select(Comment)
     comments_list = db.session.scalars(stmt)
     result = CommentSchema(many=True).dump(comments_list)

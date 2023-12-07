@@ -6,7 +6,7 @@ from models.threads import Thread, ThreadSchema
 users = Blueprint('users', __name__, url_prefix='/users')
 
 @users.route("/", methods=["GET"])
-def get_users():
+def get_all_users():
     stmt = db.select(User)
     users_list = db.session.scalars(stmt)
     result = UserSchema(many=True, exclude=["password", "admin", "threads", "comments"]).dump(users_list)
@@ -37,7 +37,7 @@ def get_user_threads(id):
 
 # Get all comments made by users
 @users.route("/comments", methods=["GET"])
-def get_users_comments():
+def get_all_users_comments():
     stmt = db.select(User)
     users_list = db.session.scalars(stmt)
     result = UserSchema(many=True, exclude=["password", "admin", "id", "threads"]).dump(users_list)
