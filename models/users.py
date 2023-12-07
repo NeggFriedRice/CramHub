@@ -1,5 +1,6 @@
 from init import db, ma
 from marshmallow.validate import Length
+from marshmallow import fields
 
 class User(db.Model):
     __tablename__ = "users"
@@ -19,5 +20,12 @@ class User(db.Model):
 # Create user schema with Marshmallow
 class UserSchema(ma.Schema):
     class Meta:
+        ordered = True
         fields = ("id", "name", "password", "email", "cohort", "admin")
         password = ma.String(validate=Length(min=6))
+class UserSchemaNested(ma.Schema):
+    class Meta:
+        ordered = True
+        fields = ("id", "name", "password", "email", "cohort", "admin", "threads")
+        password = ma.String(validate=Length(min=6))
+    threads = fields.List(fields.Nested("ThreadSchema", exclude=["user"]))

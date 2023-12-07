@@ -1,4 +1,5 @@
 from init import db, ma
+from marshmallow import fields
 
 
 class Thread(db.Model):
@@ -13,10 +14,11 @@ class Thread(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship(
         "User",
-        back_populates="threads"
-    )
+        back_populates="threads")
 
 # Create thread schema with Marshmallow
 class ThreadSchema(ma.Schema):
     class Meta:
-        fields = ("id", "category", "title", "date", "description", "link")
+        ordered = True
+        fields = ("id", "category", "title", "date", "user", "description", "link")
+    user = fields.Nested("UserSchemaNested", only=["name"])

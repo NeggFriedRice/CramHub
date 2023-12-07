@@ -12,5 +12,6 @@ class Comment(db.Model):
 # Create comment schema with Marshmallow
 class CommentSchema(ma.Schema):
     class Meta:
+        ordered = True
         fields = ("id", "date", "rating", "review")
 

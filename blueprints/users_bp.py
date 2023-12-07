@@ -8,6 +8,6 @@ users = Blueprint('users', __name__, url_prefix='/users')
 def get_users():
     stmt = db.select(User)
     users_list = db.session.scalars(stmt)
-    result = UserSchema(many=True).dump(users_list)
+    result = UserSchema(many=True, exclude=["password", "admin"]).dump(users_list)
 
     return jsonify(result)
