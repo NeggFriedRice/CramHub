@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, abort
 from init import db
 from models.comments import Comment, CommentSchema
+from models.users import User, UserSchema, UserSchemaNested
 from datetime import date
 
 comments = Blueprint('comments', __name__, url_prefix='/comments')
@@ -11,6 +12,14 @@ def get_comments():
     comments_list = db.session.scalars(stmt)
     result = CommentSchema(many=True).dump(comments_list)
 
+    return jsonify(result)
+
+# Get all comments made by users
+@comments.route("/users", methods=["GET"])
+def get_users_comments():
+    stmt = db.select(User)
+    users_list = db.session.scalars(stmt)
+    result = UserSchemaNested(many=True, exclude=["password", "admin", "id", "threads"]).dump(users_list)
     return jsonify(result)
 
 # Create new comment

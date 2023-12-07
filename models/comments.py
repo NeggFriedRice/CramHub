@@ -1,4 +1,5 @@
 from init import db, ma
+from marshmallow import fields
 
 
 class Comment(db.Model):
@@ -8,10 +9,12 @@ class Comment(db.Model):
     date = db.Column(db.Date)
     rating = db.Column(db.Integer)
     review = db.Column(db.String())
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user = db.relationship("User", back_populates="comments")
 
 # Create comment schema with Marshmallow
 class CommentSchema(ma.Schema):
     class Meta:
         ordered = True
-        fields = ("id", "date", "rating", "review")
-
+        fields = ("id", "date", "rating", "user", "review")
+    user = fields.Nested("UserSchemaComments", only=["name"])

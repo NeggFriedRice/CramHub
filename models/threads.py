@@ -12,9 +12,7 @@ class Thread(db.Model):
     description = db.Column(db.String(), nullable=False)
     link = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship(
-        "User",
-        back_populates="threads")
+    user = db.relationship("User", back_populates="threads")
 
 # Create thread schema with Marshmallow
 class ThreadSchema(ma.Schema):

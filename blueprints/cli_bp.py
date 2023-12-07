@@ -77,12 +77,14 @@ def seed_db():
         user_id = user2.id
     )
     db.session.add(thread3)
+    db.session.commit()
 
     # Comment 1
     comment1 = Comment(
         date = date.today(),
         rating = 5,
-        review = "I really found this one helpful, thanks!"
+        review = "I really found this one helpful, thanks!",
+        user_id = user1.id
     )
     db.session.add(comment1)
 
@@ -90,7 +92,8 @@ def seed_db():
     comment2 = Comment(
         date = date.today(),
         rating = 2,
-        review = "This one didn't really do it for me"
+        review = "This one didn't really do it for me",
+        user_id = user1.id
     )
     db.session.add(comment2)
 
@@ -98,7 +101,8 @@ def seed_db():
     comment3 = Comment(
         date = date.today(),
         rating = 4,
-        review = "Good resource. Had to do extra research on this but overall quite a good guide!"
+        review = "Good resource. Had to do extra research on this but overall quite a good guide!",
+        user_id = user2.id
     )
     db.session.add(comment3)
     
