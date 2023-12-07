@@ -21,9 +21,13 @@ def register():
         db.session.add(user)
         db.session.commit()
 
+        expiry = timedelta(hours=6)
+        access_token = create_access_token(identity=str(user.id), expires_delta=expiry)
+
         return jsonify(
             UserSchema(exclude=['password', 'admin']).dump(user),
-            {'CramHub Message': f"User {user.name} has been registered!"}), 201
+            {'CramHub Message': f"User {user.name} has been registered"},
+            {'Access token': access_token}), 201
     
     except IntegrityError:
         return {'Error encountered': 'This user already exists'}, 409
