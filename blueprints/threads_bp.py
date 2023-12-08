@@ -45,7 +45,7 @@ def create_thread():
     db.session.add(new_thread)
     db.session.commit()
     return jsonify(
-        ThreadSchema().dump(new_thread),
+        ThreadSchema(exclude=["user", "comments"]).dump(new_thread),
         {"CramHub Message": "Thread submitted! 🙂"}), 201
 
 # Update existing thread

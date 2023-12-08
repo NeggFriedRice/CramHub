@@ -1,6 +1,8 @@
 from init import db, ma
 from marshmallow import fields
+from marshmallow.validate import OneOf, Length
 
+VALID_RATINGS = (1, 2, 3, 4, 5)
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -16,6 +18,9 @@ class Comment(db.Model):
 
 # Create comment schema with Marshmallow
 class CommentSchema(ma.Schema):
+    rating = fields.Integer(required=True, validate=OneOf(VALID_RATINGS))
+    review = fields.String(required=True, validate=Length(min=1, error='Please add a few words to your review! 🙂'))
+
     class Meta:
         ordered = True
         fields = ("id", "date", "thread", "user", "rating", "review")

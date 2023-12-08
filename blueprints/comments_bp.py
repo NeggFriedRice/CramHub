@@ -30,7 +30,7 @@ def update_comment(id):
             CommentSchema().dump(comment),
             {"CramHub Message": f"Comment with ID: '{comment.id}' has been updated! 🙂"})
     else:
-        return {'CramHub Message': 'Comment not found'}, 404
+        return {'CramHub Message': 'Comment not found! 😯'}, 404
 
 # Delete existing comment
 @comments.route('/<int:id>', methods=['DELETE'])
@@ -39,7 +39,7 @@ def delete_comment(id):
     comment = db.session.scalar(stmt)
 
     if not comment:
-        return {"CramHub Message": "Comment not found! 😯"}
+        return {"CramHub Message": "Comment not found! 😯"}, 404
 
     db.session.delete(comment)
     db.session.commit()

@@ -1,11 +1,12 @@
 from init import db, ma
 from marshmallow import fields
 from sqlalchemy.orm import validates
+from marshmallow.validate import Length, OneOf, And
 
+VALID_CATEGORIES = ("HTML", "CSS", "PYTHON", "SQL", "FLASK")
 
 class Thread(db.Model):
     __tablename__ = "threads"
-
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(100), nullable=False)
     title = db.Column(db.String(250), nullable=False)
@@ -21,9 +22,17 @@ class Thread(db.Model):
         return value.upper()
 
 # Create thread schema with Marshmallow
-class ThreadSchema(ma.Schema):
+class ThreadSchema(ma.Schema):   
+    category = fields.String(required=True, validate=And(Length(min=1, error='Category can\'t be blank! 😯'), OneOf(VALID_CATEGORIES)))
+    title = fields.String(required=True, validate=Length(min=1, error='Title can\'t be blank! 😯'))
+    description = fields.String(required=True, validate=Length(min=1, error='Please add a few words to your thread! 🙂'))
+
+
+        
     class Meta:
         ordered = True
         fields = ("id", "category", "title", "date", "user", "description", "link", "comments")
     user = fields.Nested("UserSchema", only=["name"])
     comments = fields.List(fields.Nested("CommentSchema", exclude=["thread"]))
+
+

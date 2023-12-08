@@ -39,15 +39,15 @@ def setup():
     # Error handling
     @app.errorhandler(KeyError)
     def key_error(e):
-        return jsonify({'Error': f'The field {e} is required'}), 400
+        return {'Error': f'The field {e} is required'}, 400
     
     @app.errorhandler(ValidationError)
     def validation_error(e):
-        return jsonify({'Error': 'Invalid input type'}), 400
+        return jsonify(e.messages), 400
     
     @app.errorhandler(BadRequest)
     def bad_request(e):
-        return jsonify({'Error': e.description}), 400
+        return jsonify({'Error': str(e)}), 400
 
    
 
