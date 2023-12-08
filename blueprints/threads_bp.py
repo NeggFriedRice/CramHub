@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from init import db
 from models.threads import Thread, ThreadSchema
+from models.comments import Comment, CommentSchema
 from models.users import User, UserSchema
 from datetime import date
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -89,3 +90,23 @@ def delete_thread(id):
     return jsonify(
         ThreadSchema().dump(thread),
         {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})
+
+# Create new comment
+@threads.route("/<int:thread_id>/comments", methods=["POST"])
+@jwt_required()
+def create_comment_on_thread(thread_id):
+    # Get fields from the request
+    user_id = get_jwt_identity()
+    comment_fields = CommentSchema(exclude=['id', 'date']).load(request.json)
+    new_comment = Comment()
+    new_comment.rating = comment_fields["rating"]
+    new_comment.review = comment_fields["review"]
+    new_comment.user_id = user_id
+    new_comment.thread_id = thread_id
+    new_comment.date = date.today()
+
+    db.session.add(new_comment)
+    db.session.commit()
+    return jsonify(
+        CommentSchema().dump(new_comment),
+        {" CramHub Message": "Comment submitted! 🙂"}), 201

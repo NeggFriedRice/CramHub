@@ -3,6 +3,7 @@ from init import db
 from models.comments import Comment, CommentSchema
 from models.users import User, UserSchema
 from datetime import date
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 comments = Blueprint('comments', __name__, url_prefix='/comments')
 
@@ -13,22 +14,6 @@ def get_all_comments():
     result = CommentSchema(many=True).dump(comments_list)
 
     return jsonify(result)
-
-
-# Create new comment
-@comments.route("/", methods=["POST"])
-def create_thread():
-    comment_fields = CommentSchema(exclude=['id', 'date']).load(request.json)
-    new_comment = Comment()
-    new_comment.rating = comment_fields["rating"]
-    new_comment.review = comment_fields["review"]
-    new_comment.date = date.today()
-
-    db.session.add(new_comment)
-    db.session.commit()
-    return jsonify(
-        CommentSchema().dump(new_comment),
-        {" CramHub Message": "Comment submitted!"}), 201
 
 # Update existing comment
 @comments.route('/<int:id>', methods=['PUT', 'PATCH'])
