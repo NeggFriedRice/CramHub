@@ -84,7 +84,7 @@ def delete_thread(id):
         return {"CramHub Message": "Thread not found! 😯"}, 404
     
     return jsonify(
-        {"CramHub Message": "Thread deleted 🙂"})
+        {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})
 
 
 # Create new comment on thread
