@@ -18,6 +18,6 @@ class Comment(db.Model):
 class CommentSchema(ma.Schema):
     class Meta:
         ordered = True
-        fields = ("id", "date", "rating", "user", "review", "thread")
+        fields = ("id", "date", "thread", "user", "rating", "review")
     user = fields.Nested("UserSchema", only=["name"])
     thread = fields.Nested("ThreadSchema", only=["title"])

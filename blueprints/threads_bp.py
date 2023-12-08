@@ -77,7 +77,7 @@ def delete_thread(id):
     user = db.session.scalar(stmt)
 
     if not user or not user.admin:
-        return {'CramHub Message': "You can't delete this thread! 😔"}
+        return {'CramHub Message': "You don't have permission to delete this thread! 😔"}
 
     stmt = db.select(Thread).filter_by(id=id)
     thread = db.session.scalar(stmt)

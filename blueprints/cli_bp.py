@@ -28,21 +28,41 @@ def seed_db():
 
     # User 1
     user1 = User(
-        name = "Ayrton Senna",
+        name = "User 1",
         password = bcrypt.generate_password_hash("honda4eva").decode("utf-8"),
-        email = "senna@gmail.com",
+        email = "user1@email.com",
         cohort = "2023 September Accelerated",
     )
     db.session.add(user1)
     
     # User 2
     user2 = User(
-        name = "Harry Potter",
+        name = "User 2",
         password = bcrypt.generate_password_hash("hunter2").decode("utf-8"),
-        email = "xXhazza_pXx@owlmail.com",
-        cohort = "2022 May Standard",
+        email = "user2@email.com",
+        cohort = "2023 May Standard",
     )
     db.session.add(user2)
+    db.session.commit()
+
+    # User 3
+    user3 = User(
+        name = "Commenter 1",
+        password = bcrypt.generate_password_hash("pizzaislife").decode("utf-8"),
+        email = "commenter1@email.com",
+        cohort = "2023 October Standard",
+    )
+    db.session.add(user3)
+    db.session.commit()
+
+    # User 4
+    user4 = User(
+        name = "Commenter 2",
+        password = bcrypt.generate_password_hash("pastaislife").decode("utf-8"),
+        email = "commenter2@email.com",
+        cohort = "2023 September Accelerated",
+    )
+    db.session.add(user4)
     db.session.commit()
 
     # Thread 1
@@ -84,7 +104,7 @@ def seed_db():
         date = date.today(),
         rating = 5,
         review = "I really found this one helpful, thanks!",
-        user_id = user1.id,
+        user_id = user3.id,
         thread_id = thread1.id
     )
     db.session.add(comment1)
@@ -94,7 +114,7 @@ def seed_db():
         date = date.today(),
         rating = 2,
         review = "This one didn't really do it for me",
-        user_id = user1.id,
+        user_id = user4.id,
         thread_id = thread1.id
     )
     db.session.add(comment2)
@@ -104,7 +124,7 @@ def seed_db():
         date = date.today(),
         rating = 4,
         review = "Good resource. Had to do extra research on this but overall quite a good guide!",
-        user_id = user2.id,
+        user_id = user3.id,
         thread_id = thread2.id
     )
     db.session.add(comment3)
