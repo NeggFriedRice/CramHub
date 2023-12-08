@@ -32,11 +32,12 @@ def get_a_thread(id):
 @threads.route("/", methods=["POST"])
 @jwt_required()
 def create_thread():
+    request.json["category"] = request.json["category"].upper()
     thread_fields = ThreadSchema(exclude=['id', 'date']).load(request.json)
     # Get user id from JWT
     user_id = get_jwt_identity()
     new_thread = Thread()
-    new_thread.category = thread_fields["category"]
+    new_thread.category = request.json["category"]
     new_thread.title = thread_fields["title"]
     new_thread.date = date.today()
     new_thread.description = thread_fields["description"]
