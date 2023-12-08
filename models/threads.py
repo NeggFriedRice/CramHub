@@ -13,10 +13,13 @@ class Thread(db.Model):
     link = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="threads")
+    comments = db.relationship("Comment", back_populates="thread")
+    
 
 # Create thread schema with Marshmallow
 class ThreadSchema(ma.Schema):
     class Meta:
         ordered = True
-        fields = ("id", "category", "title", "date", "user", "description", "link")
+        fields = ("id", "category", "title", "date", "user", "description", "link", "comments")
     user = fields.Nested("UserSchema", only=["name"])
+    comments = fields.List(fields.Nested("CommentSchema", exclude=["user"]))

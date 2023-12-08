@@ -7,12 +7,18 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
+# Get all threads
 @threads.route("/", methods=["GET"])
 def get_all_threads():
     stmt = db.select(Thread)
     threads_list = db.session.scalars(stmt)
-    result = ThreadSchema(many=True).dump(threads_list)
+    result = ThreadSchema(many=True, exclude=["comments"]).dump(threads_list)
     return jsonify(result)
+
+# Get a single thread
+# @threads.route("/<int:id")
+# pass
+
 
 # Create new thread
 @threads.route("/", methods=["POST"])

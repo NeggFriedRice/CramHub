@@ -84,7 +84,8 @@ def seed_db():
         date = date.today(),
         rating = 5,
         review = "I really found this one helpful, thanks!",
-        user_id = user1.id
+        user_id = user1.id,
+        thread_id = thread1.id
     )
     db.session.add(comment1)
 
@@ -93,7 +94,8 @@ def seed_db():
         date = date.today(),
         rating = 2,
         review = "This one didn't really do it for me",
-        user_id = user1.id
+        user_id = user1.id,
+        thread_id = thread1.id
     )
     db.session.add(comment2)
 
@@ -102,7 +104,8 @@ def seed_db():
         date = date.today(),
         rating = 4,
         review = "Good resource. Had to do extra research on this but overall quite a good guide!",
-        user_id = user2.id
+        user_id = user2.id,
+        thread_id = thread2.id
     )
     db.session.add(comment3)
     
