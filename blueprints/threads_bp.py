@@ -5,6 +5,7 @@ from models.comments import Comment, CommentSchema
 from models.users import User, UserSchema
 from datetime import date
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from blueprints.auth_bp import authorise
 
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
@@ -72,24 +73,18 @@ def update_thread(id):
 @threads.route('/<int:id>', methods=['DELETE'])
 @jwt_required()
 def delete_thread(id):
-    user_id = get_jwt_identity()
-
-    stmt = db.select(User).filter_by(id=user_id)
-    user = db.session.scalar(stmt)
-
-    if not user or not user.admin:
-        return {'CramHub Message': "You don't have permission to delete this thread! 😔"}
-
     stmt = db.select(Thread).filter_by(id=id)
     thread = db.session.scalar(stmt)
-    if not thread:
-        return {"CramHub Message": "Thread not found 😯"}
-
-    db.session.delete(thread)
-    db.session.commit()
+    if thread:
+        authorise(thread.user_id)
+        db.session.delete(thread)
+        db.session.commit()
+    else:
+        return {"CramHub Message": "Thread not found! 😯"}, 404
+    
     return jsonify(
-        ThreadSchema().dump(thread),
-        {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})
+        {"CramHub Message": "Thread deleted 🙂"})
+
 
 # Create new comment on thread
 @threads.route("/<int:thread_id>/comments", methods=["POST"])

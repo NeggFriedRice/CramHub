@@ -2,12 +2,13 @@ from flask import Blueprint, jsonify, request, abort
 from init import db
 from models.users import User, UserSchema
 from main import bcrypt, jwt
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt_identity
 from datetime import timedelta
 from sqlalchemy.exc import IntegrityError
 
 auth = Blueprint('auth', __name__)
 
+# Register new user
 @auth.route('/register', methods=['POST'])
 def register():
     try:
@@ -32,10 +33,11 @@ def register():
     
     except IntegrityError:
         return {'Error encountered': 'This user already exists😯'}, 409
-    
+
+# Log in user
 @auth.route('/login', methods=['POST'])
 def login():
-    user_fields = UserSchema().load(request.json)
+    user_fields = UserSchema(exclude=["name", "cohort"]).load(request.json)
     stmt = db.select(User).filter_by(email=request.json['email'])
     user = db.session.scalar(stmt)
 
@@ -49,3 +51,17 @@ def login():
     return jsonify({"user": user.email, "token": access_token},
                    {"CramHub Message": "Successfully logged in! 🙂"})
     
+def authorise(user_id=None):
+    jwt_user_id = get_jwt_identity()
+    stmt = db.select(User).filter_by(id=jwt_user_id)
+    user = db.session.scalar(stmt)
+    print(user)
+    print(user_id)
+    print(jwt_user_id)
+    print(user.admin)
+    if user_id == int(jwt_user_id):
+        print("Yes they match")
+    else:
+        print("They don't match")
+    if not jwt_user_id == user_id:
+        abort(401, description="Error somewhere")

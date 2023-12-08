@@ -26,9 +26,7 @@ class ThreadSchema(ma.Schema):
     category = fields.String(required=True, validate=And(Length(min=1, error='Category can\'t be blank! 😯'), OneOf(VALID_CATEGORIES)))
     title = fields.String(required=True, validate=Length(min=1, error='Title can\'t be blank! 😯'))
     description = fields.String(required=True, validate=Length(min=1, error='Please add a few words to your thread! 🙂'))
-
-
-        
+       
     class Meta:
         ordered = True
         fields = ("id", "category", "title", "date", "user", "description", "link", "comments")
