@@ -29,7 +29,7 @@ def get_user_threads(id):
     if user:
         stmt = db.select(Thread).where(Thread.user_id == id)
         threads = db.session.scalars(stmt)
-        result = ThreadSchema(many=True).dump(threads)
+        result = ThreadSchema(many=True, exclude=['comments']).dump(threads)
         return jsonify(result)
     else:
         return {"CramHub Message": "User not found! 😯"}, 404

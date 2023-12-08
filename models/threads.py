@@ -1,5 +1,6 @@
 from init import db, ma
 from marshmallow import fields
+from sqlalchemy.orm import validates
 
 
 class Thread(db.Model):
@@ -15,6 +16,9 @@ class Thread(db.Model):
     user = db.relationship("User", back_populates="threads")
     comments = db.relationship("Comment", back_populates="thread")
     
+    @validates('category')
+    def convert_upper(self, key, value):
+        return value.upper()
 
 # Create thread schema with Marshmallow
 class ThreadSchema(ma.Schema):

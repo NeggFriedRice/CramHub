@@ -91,7 +91,7 @@ def delete_thread(id):
         ThreadSchema().dump(thread),
         {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})
 
-# Create new comment
+# Create new comment on thread
 @threads.route("/<int:thread_id>/comments", methods=["POST"])
 @jwt_required()
 def create_comment_on_thread(thread_id):
@@ -110,3 +110,12 @@ def create_comment_on_thread(thread_id):
     return jsonify(
         CommentSchema().dump(new_comment),
         {" CramHub Message": "Comment submitted! 🙂"}), 201
+
+# Get threads by category
+@threads.route('/category/<category>')
+def get_threads_by_category(category):
+    category = category.upper()
+    stmt = db.select(Thread).filter_by(category=category)
+    threads = db.session.scalars(stmt)    
+    result = ThreadSchema(many=True).dump(threads)
+    return jsonify (result)
