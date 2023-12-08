@@ -7,8 +7,8 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
-    rating = db.Column(db.Integer)
-    review = db.Column(db.String())
+    rating = db.Column(db.Integer, nullable=False)
+    review = db.Column(db.String(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="comments")
     thread_id = db.Column(db.Integer, db.ForeignKey("threads.id"), nullable=False)

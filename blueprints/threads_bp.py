@@ -119,3 +119,4 @@ def get_threads_by_category(category):
     threads = db.session.scalars(stmt)    
     result = ThreadSchema(many=True).dump(threads)
     return jsonify (result)
+

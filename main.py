@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from os import environ
 from init import db, ma, bcrypt, jwt
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +10,8 @@ from blueprints.threads_bp import threads
 from blueprints.comments_bp import comments
 from blueprints.auth_bp import auth
 from sqlalchemy.exc import IntegrityError
+from marshmallow.exceptions import ValidationError
+from werkzeug.exceptions import BadRequest
 
 def setup():
     # Create flask app object
@@ -35,9 +37,17 @@ def setup():
     app.register_blueprint(comments)
 
     # Error handling
-    @app.errorhandler(IntegrityError)
-    def integrity_error(err):
-        return {'error': str(err)}, 409
+    @app.errorhandler(KeyError)
+    def key_error(e):
+        return jsonify({'Error': f'The field {e} is required'}), 400
+    
+    @app.errorhandler(ValidationError)
+    def validation_error(e):
+        return jsonify({'Error': 'Invalid input type'}), 400
+    
+    @app.errorhandler(BadRequest)
+    def bad_request(e):
+        return jsonify({'Error': e.description}), 400
 
    
 
