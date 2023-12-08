@@ -16,9 +16,15 @@ def get_all_threads():
     return jsonify(result)
 
 # Get a single thread
-# @threads.route("/<int:id")
-# pass
+@threads.route("/<int:id>")
+def get_a_thread(id):
+    stmt = db.select(Thread).where(Thread.id == id)
+    thread = db.session.scalar(stmt)
+    if not thread:
+        return {"CramHub Message": "Thread not found! 😯"}, 404
 
+    result = ThreadSchema().dump(thread)
+    return jsonify(result)
 
 # Create new thread
 @threads.route("/", methods=["POST"])
@@ -48,17 +54,18 @@ def update_thread(id):
     thread_info = ThreadSchema(exclude=['id', 'date']).load(request.json)
     stmt = db.select(Thread).filter_by(id=id)
     thread = db.session.scalar(stmt)
-    if thread:
-        thread.category = thread_info.get('category', thread.category)
-        thread.title = thread_info.get('title', thread.title)
-        thread.description = thread_info.get('description', thread.description)
-        thread.link = thread_info.get('link', thread.link)
-        db.session.commit()
-        return jsonify(
-            ThreadSchema().dump(thread),
-            {"CramHub Message": f"Thread '{thread.title}' has been updated! 🙂"})
-    else:
+
+    if not thread:
         return {"CramHub Message": "Thread not found! 😯"}, 404
+
+    thread.category = thread_info.get('category', thread.category)
+    thread.title = thread_info.get('title', thread.title)
+    thread.description = thread_info.get('description', thread.description)
+    thread.link = thread_info.get('link', thread.link)
+    db.session.commit()
+    return jsonify(
+        ThreadSchema().dump(thread),
+        {"CramHub Message": f"Thread '{thread.title}' has been updated! 🙂"})
 
 # Delete existing thread
 @threads.route('/<int:id>', methods=['DELETE'])

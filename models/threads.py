@@ -22,4 +22,4 @@ class ThreadSchema(ma.Schema):
         ordered = True
         fields = ("id", "category", "title", "date", "user", "description", "link", "comments")
     user = fields.Nested("UserSchema", only=["name"])
-    comments = fields.List(fields.Nested("CommentSchema", exclude=["user"]))
+    comments = fields.List(fields.Nested("CommentSchema", exclude=["thread"]))
