@@ -1,15 +1,11 @@
 from flask import Flask, jsonify
 from os import environ
 from init import db, ma, bcrypt, jwt
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-from flask_bcrypt import Bcrypt
 from blueprints.cli_bp import db_commands
 from blueprints.users_bp import users
 from blueprints.threads_bp import threads
 from blueprints.comments_bp import comments
 from blueprints.auth_bp import auth
-from sqlalchemy.exc import IntegrityError
 from marshmallow.exceptions import ValidationError
 from werkzeug.exceptions import BadRequest
 
@@ -55,8 +51,6 @@ def setup():
     
     @app.errorhandler(401)
     def unauthorised(e):
-        return jsonify({'Error': 'You don\'t have permission to do that!'}), 401
-
-   
+        return jsonify({'Error': 'You don\'t have permission to do that!'}), 401 
 
     return app

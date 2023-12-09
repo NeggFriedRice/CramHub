@@ -7,6 +7,7 @@ from datetime import date
 from main import bcrypt
 
 
+# DB commands blueprint registered in main
 db_commands = Blueprint("db", __name__)
 
 @db_commands .cli.command("create")
