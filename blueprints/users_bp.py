@@ -1,8 +1,7 @@
 from datetime import timedelta
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token
-from init import db
-from main import bcrypt
+from init import db, bcrypt
 from models.threads import Thread, ThreadSchema
 from models.users import User, UserSchema
 from sqlalchemy.exc import IntegrityError
@@ -62,6 +61,7 @@ def login():
     return jsonify({"user": user.email, "token": access_token},
                    {"Message": "Successfully logged in! 🙂"})
 
+# Get all users
 @users.route("/", methods=["GET"])
 def get_all_users():
     # Select all user objects from db

@@ -1,10 +1,9 @@
 from flask import Blueprint
 from datetime import date
-from main import bcrypt, db
+from init import bcrypt, db
 from models.comments import Comment
 from models.users import User
 from models.threads import Thread
-
 
 # DB commands blueprint registered in main
 db_commands = Blueprint("db", __name__)
