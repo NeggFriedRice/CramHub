@@ -17,4 +17,4 @@ def authorise(user_id=None):
     print(jwt_user_id)
     print(user.admin)
     if not (user.admin or (user_id and int(jwt_user_id) == user_id)):
-        abort(jsonify(message="You don't have permission to do that! 😯"), 401)
+        abort(401)

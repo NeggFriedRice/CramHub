@@ -51,7 +51,11 @@ def setup():
     
     @app.errorhandler(404)
     def not_found(e):
-        return jsonify({'Error': 'We couldn\'t find that on the system!'})
+        return jsonify({'Error': 'We couldn\'t find that on the system!'}), 404
+    
+    @app.errorhandler(401)
+    def unauthorised(e):
+        return jsonify({'Error': 'You don\'t have permission to do that!'}), 401
 
    
 
