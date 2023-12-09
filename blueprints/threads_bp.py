@@ -2,7 +2,6 @@ from flask import Blueprint, jsonify, request
 from init import db
 from models.threads import Thread, ThreadSchema
 from models.comments import Comment, CommentSchema
-from models.users import User, UserSchema
 from datetime import date
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from blueprints.auth_bp import authorise
@@ -18,7 +17,7 @@ def get_all_threads():
     stmt = db.select(Thread)
     # Returns all selected threads objects
     threads_list = db.session.scalars(stmt)
-    # Parsed threads objects through Threadschema
+    # Parsed threads objects through Threadschema (exclude comments)
     result = ThreadSchema(many=True, exclude=["comments"]).dump(threads_list)
     # Display JSONified result
     return jsonify(result)
@@ -72,7 +71,7 @@ def create_thread():
 def update_thread(id):
     # Convert incoming request 'category' to uppercase (used for OneOf validation)
     request.json["category"] = request.json["category"].upper()
-    # Load incoming JSON request and validate through ThreadSchema
+    # Load incoming JSON request body and validate through ThreadSchema
     thread_info = ThreadSchema(exclude=['id', 'date']).load(request.json)
     # Select thread from db that matches the passed in id
     stmt = db.select(Thread).filter_by(id=id)
@@ -122,7 +121,7 @@ def delete_thread(id):
 @threads.route("/<int:thread_id>/comments", methods=["POST"])
 @jwt_required()
 def create_comment_on_thread(thread_id):
-    # Load incoming JSON request and validate through ThreadSchema
+    # Load incoming JSON request body and validate through ThreadSchema
     comment_fields = CommentSchema(exclude=['id', 'date']).load(request.json)
     # Get user id from JWT
     user_id = get_jwt_identity()
