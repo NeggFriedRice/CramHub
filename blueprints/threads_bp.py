@@ -108,7 +108,7 @@ def create_comment_on_thread(thread_id):
         {" CramHub Message": "Comment submitted! 🙂"}), 201
 
 # Get threads by category
-@threads.route('/category/<category>')
+@threads.route('/<category>')
 def get_threads_by_category(category):
     category = category.upper()
     stmt = db.select(Thread).filter_by(category=category)
