@@ -29,12 +29,12 @@ def register():
 
         return jsonify(
             UserSchema(exclude=['password', 'admin']).dump(user),
-            {'Error': f"User {user.name} has been registered! 🙂"},
+            {'Message': f"User {user.name} has been registered! 🙂"},
             {'Access token': access_token}), 201
     
     # Error handling when user exist
     except IntegrityError:
-        return {'Error encountered': 'This user already exists😯'}, 409
+        return {'Error': 'This user already exists😯'}, 409
 
 # Log in user
 @users.route('/login', methods=['POST'])
@@ -51,7 +51,7 @@ def login():
     access_token = create_access_token(identity=str(user.id), expires_delta=expiry)
 
     return jsonify({"user": user.email, "token": access_token},
-                   {"Error": "Successfully logged in! 🙂"})
+                   {"Message": "Successfully logged in! 🙂"})
 
 @users.route("/", methods=["GET"])
 def get_all_users():

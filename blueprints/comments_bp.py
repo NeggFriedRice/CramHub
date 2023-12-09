@@ -9,7 +9,6 @@ from blueprints.auth_bp import authorise
 # Comments blueprint registered in main
 comments = Blueprint('comments', __name__, url_prefix='/comments')
 
-
 # Get all comments
 @comments.route("/", methods=["GET"])
 def get_all_comments():
@@ -27,25 +26,24 @@ def get_all_comments():
 @comments.route('/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_comment(id):
-    # Parses and validates incoming JSON request body through CommentSchema
+    # Parse and validate incoming JSON request body through CommentSchema
     comment_info = CommentSchema(exclude=['date']).load(request.json)
-    # Selects comment from db that matches the passed in id
+    # Select comment from db that matches the passed in id
     stmt = db.select(Comment).filter_by(id=id)
-    # Returns the selected comment
+    # Return selected comment
     comment = db.session.scalar(stmt)
     if comment:
         # If comment exists, authorise user
         authorise(comment.user_id)
-        # Update comment rating with JSON request 'rating'
+        # Update comment attributes with incoming JSON body attributes
         comment.rating = comment_info.get('rating', comment.rating)
-        # Update comment review with JSON request 'review'
         comment.review = comment_info.get('review', comment.review)
         # Commit updates
         db.session.commit()
+        # Display updated JSONIfied comment and successful update comment to user
         return jsonify(
-            # Display updated JSONIfied successful update comment to user
             CommentSchema(exclude=["user"]).dump(comment),
-            {"Error": f"Comment with ID: '{comment.id}' has been updated! 🙂"})
+            {"Message": f"Comment with ID: '{comment.id}' has been updated! 🙂"})
     else:
         # If commenot not found, show error message
         return {'Error': 'Comment not found! 😯'}, 404
@@ -70,4 +68,4 @@ def delete_comment(id):
         # If comment does not exist, show error message
         return {"Error": "Comment not found! 😯"}, 404
     # Display successful delete message to user
-    return {"Error": f"Comment with ID '{comment.id}' deleted 🙂"}
+    return {"Message": f"Comment with ID '{comment.id}' deleted 🙂"}
