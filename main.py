@@ -48,6 +48,10 @@ def setup():
     @app.errorhandler(BadRequest)
     def bad_request(e):
         return jsonify({'Error': str(e)}), 400
+    
+    @app.errorhandler(404)
+    def not_found(e):
+        return jsonify({'Error': 'We couldn\'t find that on the system!'})
 
    
 

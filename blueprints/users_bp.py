@@ -29,7 +29,7 @@ def register():
 
         return jsonify(
             UserSchema(exclude=['password', 'admin']).dump(user),
-            {'CramHub Message': f"User {user.name} has been registered! 🙂"},
+            {'Error': f"User {user.name} has been registered! 🙂"},
             {'Access token': access_token}), 201
     
     # Error handling when user exist
@@ -44,14 +44,14 @@ def login():
     user = db.session.scalar(stmt)
 
     if not user or not bcrypt.check_password_hash(user.password, user_fields['password']):
-        return {"CramHUB Message": "Invalid username or password! 😯"}, 401
+        return {"Error": "Invalid username or password! 😯"}, 401
     
     expiry = timedelta(hours=6)
 
     access_token = create_access_token(identity=str(user.id), expires_delta=expiry)
 
     return jsonify({"user": user.email, "token": access_token},
-                   {"CramHub Message": "Successfully logged in! 🙂"})
+                   {"Error": "Successfully logged in! 🙂"})
 
 @users.route("/", methods=["GET"])
 def get_all_users():
@@ -79,8 +79,7 @@ def get_user_threads(id):
         result = ThreadSchema(many=True, exclude=['comments']).dump(threads)
         return jsonify(result)
     else:
-        return {"CramHub Message": "User not found! 😯"}, 404
-
+        return {"Error": "User not found! 😯"}, 404
 
 # Get all comments made by users
 @users.route("/comments", methods=["GET"])

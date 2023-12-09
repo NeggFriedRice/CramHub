@@ -7,6 +7,7 @@ from datetime import date
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from blueprints.auth_bp import authorise
 
+
 threads = Blueprint('threads', __name__, url_prefix='/threads')
 
 # Get all threads
@@ -23,7 +24,7 @@ def get_a_thread(id):
     stmt = db.select(Thread).where(Thread.id == id)
     thread = db.session.scalar(stmt)
     if not thread:
-        return {"CramHub Message": "Thread not found! 😯"}, 404
+        return {"Error": "Thread not found! 😯"}, 404
 
     result = ThreadSchema().dump(thread)
     return jsonify(result)
@@ -48,7 +49,7 @@ def create_thread():
     db.session.commit()
     return jsonify(
         ThreadSchema(exclude=["user", "comments"]).dump(new_thread),
-        {"CramHub Message": "Thread submitted! 🙂"}), 201
+        {"Error": "Thread submitted! 🙂"}), 201
 
 # Update existing thread
 @threads.route('/<int:id>', methods=['PUT', 'PATCH'])
@@ -66,11 +67,10 @@ def update_thread(id):
         thread.link = thread_info.get('link', thread.link)
         db.session.commit()
     else:
-        return {"CramHub Message": "Thread not found! 😯"}, 404
-
+        return {"Error": "Thread not found! 😯"}, 404
     return jsonify(
         ThreadSchema(exclude=["user", "comments", "date"]).dump(thread),
-        {"CramHub Message": f"Thread '{thread.title}' has been updated! 🙂"})
+        {"Error": f"Thread '{thread.title}' has been updated! 🙂"})
 
 # Delete existing thread
 @threads.route('/<int:id>', methods=['DELETE'])
@@ -83,11 +83,10 @@ def delete_thread(id):
         db.session.delete(thread)
         db.session.commit()
     else:
-        return {"CramHub Message": "Thread not found! 😯"}, 404
+        return {"Error": "Thread not found! 😯"}, 404
     
     return jsonify(
-        {"CramHub Message": f"Thread '{thread.title}' deleted 🙂"})
-
+        {"Error": f"Thread '{thread.title}' deleted 🙂"})
 
 # Create new comment on thread
 @threads.route("/<int:thread_id>/comments", methods=["POST"])
@@ -107,7 +106,7 @@ def create_comment_on_thread(thread_id):
     db.session.commit()
     return jsonify(
         CommentSchema().dump(new_comment),
-        {" CramHub Message": "Comment submitted! 🙂"}), 201
+        {" Error": "Comment submitted! 🙂"}), 201
 
 # Get threads by category
 @threads.route('/<category>')
