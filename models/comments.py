@@ -14,7 +14,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="comments")
     thread_id = db.Column(db.Integer, db.ForeignKey("threads.id"), nullable=False)
-    thread = db.relationship("Thread", back_populates="comments", cascade="all, delete")
+    thread = db.relationship("Thread", back_populates="comments")
 
 # Create comment schema with Marshmallow
 class CommentSchema(ma.Schema):

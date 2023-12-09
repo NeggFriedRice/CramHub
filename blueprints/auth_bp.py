@@ -8,8 +8,6 @@ from datetime import timedelta
 
 auth = Blueprint('auth', __name__)
 
-
-    
 def authorise(user_id=None):
     jwt_user_id = get_jwt_identity()
     stmt = db.select(User).filter_by(id=jwt_user_id)

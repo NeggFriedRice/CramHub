@@ -54,20 +54,22 @@ def create_thread():
 @threads.route('/<int:id>', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_thread(id):
+    request.json["category"] = request.json["category"].upper()
     thread_info = ThreadSchema(exclude=['id', 'date']).load(request.json)
     stmt = db.select(Thread).filter_by(id=id)
     thread = db.session.scalar(stmt)
-
-    if not thread:
+    if thread:
+        authorise(thread.user_id)
+        thread.category = thread_info.get('category', thread.category)
+        thread.title = thread_info.get('title', thread.title)
+        thread.description = thread_info.get('description', thread.description)
+        thread.link = thread_info.get('link', thread.link)
+        db.session.commit()
+    else:
         return {"CramHub Message": "Thread not found! 😯"}, 404
 
-    thread.category = thread_info.get('category', thread.category)
-    thread.title = thread_info.get('title', thread.title)
-    thread.description = thread_info.get('description', thread.description)
-    thread.link = thread_info.get('link', thread.link)
-    db.session.commit()
     return jsonify(
-        ThreadSchema().dump(thread),
+        ThreadSchema(exclude=["user", "comments", "date"]).dump(thread),
         {"CramHub Message": f"Thread '{thread.title}' has been updated! 🙂"})
 
 # Delete existing thread
@@ -92,8 +94,8 @@ def delete_thread(id):
 @jwt_required()
 def create_comment_on_thread(thread_id):
     # Get fields from the request
-    user_id = get_jwt_identity()
     comment_fields = CommentSchema(exclude=['id', 'date']).load(request.json)
+    user_id = get_jwt_identity()
     new_comment = Comment()
     new_comment.rating = comment_fields["rating"]
     new_comment.review = comment_fields["review"]

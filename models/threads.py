@@ -15,7 +15,7 @@ class Thread(db.Model):
     link = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="threads")
-    comments = db.relationship("Comment", back_populates="thread")
+    comments = db.relationship("Comment", back_populates="thread", cascade="all, delete")
     
     @validates('category')
     def convert_upper(self, key, value):
