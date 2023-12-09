@@ -1,11 +1,12 @@
-from init import db
 from datetime import timedelta
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token
+from init import db
 from main import bcrypt
 from models.threads import Thread, ThreadSchema
 from models.users import User, UserSchema
 from sqlalchemy.exc import IntegrityError
+
 
 users = Blueprint('users', __name__, url_prefix='/users')
 

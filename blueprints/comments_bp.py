@@ -1,10 +1,9 @@
-from flask import Blueprint, jsonify, request, abort
+from blueprints.auth_bp import authorise
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required
 from init import db
 from models.comments import Comment, CommentSchema
-from models.users import User, UserSchema
-from datetime import date
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from blueprints.auth_bp import authorise
+
 
 # Comments blueprint registered in main
 comments = Blueprint('comments', __name__, url_prefix='/comments')

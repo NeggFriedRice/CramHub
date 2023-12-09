@@ -1,7 +1,7 @@
 from init import db, ma
 from marshmallow import fields
-from sqlalchemy.orm import validates
 from marshmallow.validate import Length, OneOf, And
+from sqlalchemy.orm import validates
 
 
 # Valid categories for threads

@@ -1,10 +1,9 @@
-from main import db
 from flask import Blueprint
+from datetime import date
+from main import bcrypt, db
+from models.comments import Comment
 from models.users import User
 from models.threads import Thread
-from models.comments import Comment
-from datetime import date
-from main import bcrypt
 
 
 # DB commands blueprint registered in main

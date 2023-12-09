@@ -1,10 +1,10 @@
-from flask import Blueprint, jsonify, request
-from init import db
-from models.threads import Thread, ThreadSchema
-from models.comments import Comment, CommentSchema
-from datetime import date
-from flask_jwt_extended import jwt_required, get_jwt_identity
 from blueprints.auth_bp import authorise
+from datetime import date
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from init import db
+from models.comments import Comment, CommentSchema
+from models.threads import Thread, ThreadSchema
 
 
 # Comments blueprint registered in main

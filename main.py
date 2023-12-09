@@ -1,12 +1,12 @@
-from flask import Flask, jsonify
-from os import environ
-from init import db, ma, bcrypt, jwt
-from blueprints.cli_bp import db_commands
-from blueprints.users_bp import users
-from blueprints.threads_bp import threads
-from blueprints.comments_bp import comments
 from blueprints.auth_bp import auth
+from blueprints.cli_bp import db_commands
+from blueprints.comments_bp import comments
+from blueprints.threads_bp import threads
+from blueprints.users_bp import users
+from flask import Flask, jsonify
+from init import bcrypt, db, jwt, ma
 from marshmallow.exceptions import ValidationError
+from os import environ
 from werkzeug.exceptions import BadRequest
 
 def setup():

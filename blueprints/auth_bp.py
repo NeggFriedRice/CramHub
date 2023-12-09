@@ -1,7 +1,7 @@
 from flask import Blueprint, abort
+from flask_jwt_extended import get_jwt_identity
 from init import db
 from models.users import User
-from flask_jwt_extended import get_jwt_identity
 
 
 # Authorisation blueprint registered in main
