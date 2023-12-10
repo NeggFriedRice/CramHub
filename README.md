@@ -8,25 +8,25 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 # R5 - API Endpoints
 - Users endpoints
     - [Register new user](#1-register-new-user)
-    - Login as existing user
-    - Get all users
-    - Get all threads by all users
-    - Get all threads by a single user (by user_id)
-    - Get all comments by all users
+    - [Login as existing user](#2-login-as-existing-user)
+    - [Get all users](#3-get-all-users)
+    - [Get all threads by all users](#4-get-all-threads-by-all-users)
+    - [Get all threads by a single user (by user_id)](#5-get-all-threads-by-single-user-by-user_id)
+    - [Get all comments by all users](#6-get-all-comments-by-all-users)
 
 - Threads endpoints
-    - Get all threads
-    - Get a single thread (by thread_id)
-    - Get all threads (by category)
-    - Create new thread
-    - Update existing thread (by thread_id)
-    - Delete existing thread (by thread_id)
+    - [Get all threads](#7-get-all-comments-by-all-users)
+    - [Get a single thread (by thread_id)](#8-get-a-single-thread-by-thread_id)
+    - [Get all threads (by category)](#9-get-all-threads-by-category)
+    - [Create new thread](#10-create-new-thread)
+    - [Update existing thread (by thread_id)](#11-updating-existing-thread-by-thread_id)
+    - [Delete existing thread (by thread_id)](#12-delete-existing-thread-by-thread_id)
 
 - Comments endpoints 
-    - Get all comments
-    - Create new comment on thread (by thread_id)
-    - Update existing comment (by comment_id)
-    - Delete existing comment (by comment_id)
+    - [Get all comments](#13-get-all-comments)
+    - [Create new comment on thread (by thread_id)](#14-create-new-comment-on-thread-by-thread_id)
+    - [Update existing comment (by comment_id)](#15-update-existing-comment-by-comment_id)
+    - [Delete existing comment (by comment_id)](#16-delete-existing-comment-by-comment_id)
 
 ### Users endpoints
 #### 1. Register new user
@@ -44,7 +44,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `Access token` (with 6 hour expiry)
 - Authentication method: None
 
-#### 1. Login as existing user
+#### 2. Login as existing user
 - Endpoint: `/users/login`
 - HTTP verb: `POST`
 - Required data:
@@ -56,7 +56,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `Successfully logged in! 🙂`
 - Authentication method: If the user exists, the submitted password will be hashed (via Bcrypt) and compared to the hashed password in the database
 
-#### 1. Get all users
+#### 3. Get all users
 - Endpoint: `/users`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -65,7 +65,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return list of users excluding: `id`, `password`, `admin`, `threads`, `comments`
 - Authentication method: `None`
 
-#### 1. Get all threads by all users
+#### 4. Get all threads by all users
 - Endpoint: `/users/threads`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -74,8 +74,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return list of users excluding: `id`, `password`, `admin`, `comments`
 - Authentication method: `None`
 
-#### 1. Get all threads by single user (by user_id)
-- Endpoint: `/users/<user_id>/threads`
+#### 5. Get all threads by single user (by user_id)
+- Endpoint: `/users/<int:user_id>/threads`
 - HTTP verb: `GET`
 - Required data: `None`
 - Expected response:
@@ -83,7 +83,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return list of threads that belong to a single user excluding: `comments`
 - Authentication method: `None`
 
-#### 1. Get all comments by all users
+#### 6. Get all comments by all users
 - Endpoint: `/users/comments`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -93,7 +93,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 - Authentication method: `None`
 
 ### Threads endpoints
-#### 1. Get all threads
+#### 7. Get all threads
 - Endpoint: `/threads`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -102,8 +102,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return list of threads excluding: `comments`
 - Authentication method: `None`
 
-#### 1. Get a single thread (by thread_id)
-- Endpoint: `/threads/<thread_id>`
+#### 8. Get a single thread (by thread_id)
+- Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `GET`
 - Required data: `None`
 - Expected response:
@@ -111,8 +111,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return single thread
 - Authentication method: `None`
 
-#### 1. Get all threads (by category)
-- Endpoint: `/threads/<category>`
+#### 9. Get all threads (by category)
+- Endpoint: `/threads/<str:category>`
 - HTTP verb: `GET`
 - Required data: `None`
 - Expected response:
@@ -120,7 +120,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return all threads that match the requested category
 - Authentication method: `None`
 
-#### Create new thread
+#### 10. Create new thread
 - Endpoint: `/threads`
 - HTTP verb: `POST`
 - Required data:
@@ -134,8 +134,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `Thread submitted! 🙂`
 - Authentication: Current JWT
 
-#### 1. Updating existing thread (by thread_id)
-- Endpoint: `/threads/<thread_id>`
+#### 11. Updating existing thread (by thread_id)
+- Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `PUT`, `PATCH`
 - Required data:
   - `category` - must be one of: HTML, CSS, Python, SQL, Flask
@@ -148,8 +148,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `Thread {title} has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
 
-#### 1. Delete existing thread (by thread_id)
-- Endpoint: `/threads/<thread_id>`
+#### 12. Delete existing thread (by thread_id)
+- Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `DELETE`
 - Required data:`None`
 - Expected resonse:
@@ -159,7 +159,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 
 ### Comments endpoints
 
-#### 1. Get all comments
+#### 13. Get all comments
 - Endpoint: `/comments`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -168,8 +168,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return list of comments 
 - Authentication method: `None`
 
-#### 1. Create new comment on thread (by thread_id)
-- Endpoint: `/threads/<thread_id>/comments`
+#### 14. Create new comment on thread (by thread_id)
+- Endpoint: `/threads/<int:thread_id>/comments`
 - HTTP verb: `POST`
 - Required data:
   - `rating` - must be integer and one of: 1, 2, 3, 4 or 5
@@ -180,8 +180,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `Comment submitted! 🙂`
 - Authentication: Current JWT
 
-#### 1. Update existing comment (by comment_id)
-- Endpoint: `/comments/<comment_id>`
+#### 15. Update existing comment (by comment_id)
+- Endpoint: `/comments/<int:comment_id>`
 - HTTP verb: `PUT`, `PATCH`
 - Required data:
   - `rating`
@@ -192,8 +192,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `Comment with ID: '{comment_id}' has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
 
-#### 1. Delete existing comment (by comment_id)
-- Endpoint: `/comments/<comment_id>`
+#### 16. Delete existing comment (by comment_id)
+- Endpoint: `/comments/<int:comment_id>`
 - HTTP verb: `DELETE`
 - Required data:`None`
 - Expected resonse:
