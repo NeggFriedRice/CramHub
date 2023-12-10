@@ -35,6 +35,10 @@ CramHub is a web server and API project that allows anyone studying coding conce
 - Run the Flask app
 - `flask run`
 
+#### Application Environment files
+- Create a new `.flaskenv` file and change the included code in the `.flaskenv_sample` file
+- Create a new `.env` file and change the included code in the `.env_sample` file
+---
 
 R1 - Identification of problem
 

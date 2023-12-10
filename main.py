@@ -9,6 +9,7 @@ from marshmallow.exceptions import ValidationError
 from os import environ
 from werkzeug.exceptions import BadRequest
 
+
 def setup():
     # Create flask app object
     app = Flask(__name__)
