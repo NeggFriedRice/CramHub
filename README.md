@@ -43,6 +43,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `User {name} has been registered! 🙂`
   - `Access token` (with 6 hour expiry)
 - Authentication method: None
+![Register new user](/resources/endpoint_exaples/register_new_user.png)
 
 #### 2. Login as existing user
 - Endpoint: `/users/login`
