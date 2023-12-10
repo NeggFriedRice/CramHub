@@ -19,8 +19,6 @@ R5 - [API Endpoints](#r5---api-endpoints)
 
 R6 - [ERD](#r6---erd)
 
-![Cramhub ERD](./docs/cramhubERD.png)
-
 R7 - [Third party services](#r7---third-party-services)
 
 R8 - [Project models relationships](#r8---project-models-relationships)
@@ -71,7 +69,7 @@ Have you ever experienced the building internal dread of sitting in class thinki
 
 After taking a few moments to pull yourself together while trying to hide your tears did you ever stare blankly out the classroom window (or at the Windows XP flowing meadows wallpaper) and think *'You know what would be awesome? If I could crowdsource my studies so I'm not wasting precious **Risk of Rain 2** time by trying to find something good to study!'*?
 
-The CramHub project aims to crowdsource learning materials from students alike that were particularly helpful in helping them understand a particular concept. There is a peer-review angle that allows other students to give the material a go and give a rating and review with the aim that high quality content will be higher ranked allowing other students to save time when trying to pick something to study.
+The CramHub project aims to crowdsource learning materials from students alike that were particularly helpful in helping them understand a particular concept. There is a peer-review angle that allows other students to give the material a go and give a rating and review with the aim that high quality content will be higher ranked allowing other students to quickly view the ratings and save time when trying to pick something to study.
 
 For this particular application, my usecase has been for the CoderAcademy course syllabus thus far (and the allowable categories can be extended quite easily) for the benefit of the students undertaking this course. 
 
@@ -79,6 +77,8 @@ For this particular application, my usecase has been for the CoderAcademy course
 With the advent of the internet it's very easy to find information or materials with a few keystrokes and a mouse click allowing anyone to upskill if they put the time in; but alas, this is a double-edged sword. With heaping mounds of information comes a huge time investment trying to find material that fits the bill and not a word dump copied from StackOverflow for SEO optimisation. 
 
 It's extremely time consuming to trawl through the huge mountain of guides, walkthroughs and YouTube videos to find something that is easily understandable with a clear and concise step-by-step approach.
+
+The CramHub project aims to reduce this time investment that is required before any substantial learning can even begin.
 
 ## R3 - Why did I choose this database system (and comparison to others)? 
 
