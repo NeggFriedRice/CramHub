@@ -65,11 +65,11 @@ R10 - [Project Management](#r10---project-management)
 ---
 
 ## R1 - Problem I'm trying to solve
-Have you ever experienced the building internal dread of sitting in class thinking *'Gadzooks! I don't understand a thing about this topic'*? Yep, I've been there, **we've** been there.
+Have you ever experienced the building internal dread of sitting in class thinking *'Gadzooks! I don't understand a thing about this topic'*? Yep, I've been there, *we've* been there.
 
 After taking a few moments to pull yourself together while trying to hide your tears did you ever stare blankly out the classroom window (or at the Windows XP flowing meadows wallpaper) and think *'You know what would be awesome? If I could crowdsource my studies so I'm not wasting precious **Risk of Rain 2** time by trying to find something good to study!'*?
 
-The CramHub project aims to crowdsource learning materials from students alike that were particularly helpful in helping them understand a particular concept. There is a peer-review angle that allows other students to give the material a go and give a rating and review with the aim that high quality content will be higher ranked allowing other students to quickly view the ratings and save time when trying to pick something to study.
+The CramHub project aims to crowdsource learning materials from students alike that were particularly helpful in helping them understand a particular concept -- students can submit a thread with a description and a link to the resource to the CramHub platform. There is a peer-review angle that allows other students to give the material a go and give a rating and review with the aim that high quality content will be higher ranked allowing other students to quickly view the ratings and save time when trying to pick something to study.
 
 For this particular application, my usecase has been for the CoderAcademy course syllabus thus far (and the allowable categories can be extended quite easily) for the benefit of the students undertaking this course. 
 
