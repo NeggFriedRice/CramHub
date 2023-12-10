@@ -1,4 +1,40 @@
 # T2A2 - API Web Server Project - CramHub
+Hello! Thanks for visiting the CramHub repository!
+
+CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that are highly rated by peers can be easily found.
+
+## R0 - Install guide (WSL)
+#### Create Virtual Environment
+- Open a WSL terminal and create a virtual environment
+- `python3 -m venv .venv`
+- Activate the virtual environment
+- `source .venv/bin/activate`
+- Open your IDE
+- `code .`
+- Install the dependencies
+- `pip install -r requirements.txt`
+
+#### Create a PostgreSQL database and admin user
+- Open a WSL terminal and open PostgreSQL 
+- `sudo -u postgres psql`
+- Create a database
+- `create database cramhub_db;`
+- Create a database admin user with password (example credentials below)
+- `create user cramhub_dev with password 'cramhub';`
+- Grant all privileges to admin user
+- `grant all privileges on database cramhub_db to cramhub_dev;`
+- Grant all permissions on database schemas to admin user
+- `grant all on schema public to cramhub_dev;`
+
+#### Create tables, seed database and run Flask application
+- Open a WSL terminal (exit out of PostgreSQL if still open)
+- Create the tables
+- `flask db create`
+- Seed the tables with data
+- `flask db seed`
+- Run the Flask app
+- `flask run`
+
 
 R1 - Identification of problem
 
@@ -8,7 +44,7 @@ R3 - Why have you chosen this database system? What are the drawbacks compared t
 
 R4 - Idetify and discuss the key functionalities and benefits of an ORM
 
-# R5 - API Endpoints
+## R5 - API Endpoints
 - Users endpoints
     - [Register new user](#1-register-new-user)
     - [Login as existing user](#2-login-as-existing-user)
@@ -69,7 +105,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 - Required data: `None`
 - Expected response:
   - `200 OK`
-  - Return list of users excluding: `id`, `password`, `admin`, `threads`, `comments`
+  - Return list of users excluding: `password`, `admin`, `threads`, `comments`
 - Authentication method: `None`
 ![Get all user](./docs/endpoint%20examples/get_all_users.png)
 ---
@@ -102,7 +138,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 - Required data: `None`
 - Expected response:
   - `200 OK`
-  - Return list of comments
+  - Return list of comments by all users
 - Authentication method: `None`
 ![Get all comments by all users](./docs/endpoint%20examples/get_all_comments_by_all_users.png)
 ---
@@ -221,7 +257,7 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return updated thread data excluding: `user`
   - Message: `Comment with ID: '{comment_id}' has been updated! 🙂`
-- Authentication: Current JWT, JWT user id must match user id that created original thread
+- Authentication: Current JWT, JWT user id must match user id that created original comment
 ![Update existing comment](./docs/endpoint%20examples/update_existing_comment.png)
 ---
 
@@ -232,11 +268,12 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 - Expected resonse:
   - `200 OK`
   - Message: `Comment with ID: '{comment_id}' deleted! 🙂`
-- Authentication: Current JWT, JWT user id must match user id that created original thread
+- Authentication: Current JWT, JWT user id must match user id that created original comment
 ![Delete existing comment](./docs/endpoint%20examples/delete_existing_comment.png)
 ---
 
 R6 - ERD
+![Cramhub ERD](./docs/cramhubERD.png)
 
 R7 - Third party services
 
