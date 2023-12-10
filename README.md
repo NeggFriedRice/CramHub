@@ -2,6 +2,7 @@
 Hello! Thanks for visiting the CramHub repository!
 
 CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that is highly rated by peers can be easily found.
+
 ---
 ## Directory
 R0 - [Install guide (WSL)](#r0---install-guide-wsl)
