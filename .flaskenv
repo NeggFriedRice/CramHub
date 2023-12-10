@@ -1,3 +1,0 @@
-FLASK_APP=main:setup
-FLASK_ENV=development
-FLASK_DEBUG=True
