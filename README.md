@@ -1,7 +1,32 @@
 # T2A2 - API Web Server Project - CramHub
 Hello! Thanks for visiting the CramHub repository!
 
-CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that are highly rated by peers can be easily found.
+CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that is highly rated by peers can be easily found.
+---
+## Directory
+R0 - [Install guide (WSL)](#r0---install-guide-wsl)
+
+R1 - [Problem I'm trying to solve](#r1---problem-im-trying-to-solve)
+
+R2 - [Why does it need solving?](#r2---why-does-it-need-solving)
+
+R3 - [Why did I choose this database system (and comparison to others)?](#r3---why-did-i-choose-this-database-system-and-comparison-to-others)
+
+R4 - [Key functionalities and benefits of an ORM](#r4---key-functionalities-and-benefits-of-an-orm)
+
+R5 - [API Endpoints](#r5---api-endpoints)
+
+R6 - [ERD](#r6---erd)
+
+![Cramhub ERD](./docs/cramhubERD.png)
+
+R7 - [Third party services](#r7---third-party-services)
+
+R8 - [Project models relationships](#r8---project-models-relationships)
+
+R9 - [Database relations](#r9---database-relations)
+
+R10 - [Project Management](#r10---project-management)
 
 ## R0 - Install guide (WSL)
 #### Create Virtual Environment
@@ -36,17 +61,27 @@ CramHub is a web server and API project that allows anyone studying coding conce
 - `flask run`
 
 #### Application Environment files
-- Create a new `.flaskenv` file and change the included code in the `.flaskenv_sample` file
-- Create a new `.env` file and change the included code in the `.env_sample` file
+- Create a new `.flaskenv` file and change the included code in the `.flaskenv_sample` file to suit your needs
+- Create a new `.env` file and change the included code in the `.env_sample` file to suit your needs
 ---
 
-R1 - Identification of problem
+## R1 - Problem I'm trying to solve
+Have you ever experienced the building internal dread of sitting in class thinking *'Gadzooks! I don't understand a thing about this topic'*? Yep, I've been there, **we've** been there.
 
-R2 - Why is it a problem that needs solving?
+After taking a few moments to pull yourself together while trying to hide your tears did you ever stare blankly out the classroom window (or at the Windows XP flowing meadows wallpaper) and think *'You know what would be awesome? If I could crowdsource my studies so I'm not wasting precious **Risk of Rain 2** time by trying to find something good to study!'*?
 
-R3 - Why have you chosen this database system? What are the drawbacks compared to others?
+The CramHub project aims to crowdsource learning materials from students alike that were particularly helpful in helping them understand a particular concept. There is a peer-review angle that allows other students to give the material a go and give a rating and review with the aim that high quality content will be higher ranked allowing other students to save time when trying to pick something to study.
 
-R4 - Idetify and discuss the key functionalities and benefits of an ORM
+For this particular application, my usecase has been for the CoderAcademy course syllabus thus far (and the allowable categories can be extended quite easily) for the benefit of the students undertaking this course. 
+
+## R2 - Why does it need solving?
+With the advent of the internet it's very easy to find information or materials with a few keystrokes and a mouse click allowing anyone to upskill if they put the time in; but alas, this is a double-edged sword. With heaping mounds of information comes a huge time investment trying to find material that fits the bill and not a word dump copied from StackOverflow for SEO optimisation. 
+
+It's extremely time consuming to trawl through the huge mountain of guides, walkthroughs and YouTube videos to find something that is easily understandable with a clear and concise step-by-step approach.
+
+## R3 - Why did I choose this database system (and comparison to others)? 
+
+## R4 - Key functionalities and benefits of an ORM
 
 ## R5 - API Endpoints
 - Users endpoints
@@ -276,13 +311,14 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
 ![Delete existing comment](./docs/endpoint%20examples/delete_existing_comment.png)
 ---
 
-R6 - ERD
+## R6 - ERD
+
 ![Cramhub ERD](./docs/cramhubERD.png)
 
-R7 - Third party services
+## R7 - Third party services
 
-R8 - Describe project models in terms of relationships
+## R8 - Project models relationships
 
-R9 - Describe the database relations implemented in your application
+## R9 - Database relations
 
-R10 - Describe the way tasks are allocated and tracked
+## R10 - Project Management
