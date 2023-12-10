@@ -1,8 +1,11 @@
 # T2A2 - API Web Server Project - CramHub
 
 R1 - Identification of problem
+
 R2 - Why is it a problem that needs solving?
+
 R3 - Why have you chosen this database system? What are the drawbacks compared to others?
+
 R4 - Idetify and discuss the key functionalities and benefits of an ORM
 
 # R5 - API Endpoints
@@ -43,7 +46,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Message: `User {name} has been registered! 🙂`
   - `Access token` (with 6 hour expiry)
 - Authentication method: None
-![Register new user](/resources/endpoint_exaples/register_new_user.png)
+![Register new user](./docs/endpoint%20examples/register_new_user.png)
+---
 
 #### 2. Login as existing user
 - Endpoint: `/users/login`
@@ -56,6 +60,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return `user` and `token`
   - Message: `Successfully logged in! 🙂`
 - Authentication method: If the user exists, the submitted password will be hashed (via Bcrypt) and compared to the hashed password in the database
+![Login as existing user](./docs/endpoint%20examples/login_as_existing_user.png)
+---
 
 #### 3. Get all users
 - Endpoint: `/users`
@@ -65,6 +71,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of users excluding: `id`, `password`, `admin`, `threads`, `comments`
 - Authentication method: `None`
+![Get all user](./docs/endpoint%20examples/get_all_users.png)
+---
 
 #### 4. Get all threads by all users
 - Endpoint: `/users/threads`
@@ -74,6 +82,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of users excluding: `id`, `password`, `admin`, `comments`
 - Authentication method: `None`
+![Get all threads by all users](./docs/endpoint%20examples/get_all_threads_by_all_users.png)
+---
 
 #### 5. Get all threads by single user (by user_id)
 - Endpoint: `/users/<int:user_id>/threads`
@@ -83,6 +93,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of threads that belong to a single user excluding: `comments`
 - Authentication method: `None`
+![Get all threads by single user](./docs/endpoint%20examples/get_all_threads_by_single_user.png)
+---
 
 #### 6. Get all comments by all users
 - Endpoint: `/users/comments`
@@ -92,6 +104,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of comments
 - Authentication method: `None`
+![Get all comments by all users](./docs/endpoint%20examples/get_all_comments_by_all_users.png)
+---
 
 ### Threads endpoints
 #### 7. Get all threads
@@ -102,6 +116,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of threads excluding: `comments`
 - Authentication method: `None`
+![Get all threads](./docs/endpoint%20examples/get_all_threads.png)
+---
 
 #### 8. Get a single thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
@@ -111,6 +127,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return single thread
 - Authentication method: `None`
+![Get a single thread](./docs/endpoint%20examples/get_single_thread.png)
+---
 
 #### 9. Get all threads (by category)
 - Endpoint: `/threads/<str:category>`
@@ -120,6 +138,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return all threads that match the requested category
 - Authentication method: `None`
+![Get all threads by category](./docs/endpoint%20examples/get_all_threads_by_category.png)
+---
 
 #### 10. Create new thread
 - Endpoint: `/threads`
@@ -134,6 +154,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return thread data excluding: `user`, `comments`
   - Message: `Thread submitted! 🙂`
 - Authentication: Current JWT
+![Create new thread](./docs/endpoint%20examples/create_new_thread.png)
+---
 
 #### 11. Updating existing thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
@@ -148,6 +170,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return updated thread data excluding: `date`, `user`, `comments`
   - Message: `Thread {title} has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+![Update existing thread](./docs/endpoint%20examples/update_existing_thread.png)
+---
 
 #### 12. Delete existing thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
@@ -157,6 +181,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Message: `Thread {title} deleted! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+![Delete existing thread](./docs/endpoint%20examples/delete_existing_thread.png)
+---
 
 ### Comments endpoints
 
@@ -168,6 +194,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Return list of comments 
 - Authentication method: `None`
+![Get all comments](./docs/endpoint%20examples/get_all_comments.png)
+---
 
 #### 14. Create new comment on thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>/comments`
@@ -180,6 +208,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return comment data
   - Message: `Comment submitted! 🙂`
 - Authentication: Current JWT
+![Create new comment on thread](./docs/endpoint%20examples/create_new_comment.png)
+---
 
 #### 15. Update existing comment (by comment_id)
 - Endpoint: `/comments/<int:comment_id>`
@@ -192,6 +222,8 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - Return updated thread data excluding: `user`
   - Message: `Comment with ID: '{comment_id}' has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+![Update existing comment](./docs/endpoint%20examples/update_existing_comment.png)
+---
 
 #### 16. Delete existing comment (by comment_id)
 - Endpoint: `/comments/<int:comment_id>`
@@ -201,8 +233,15 @@ R4 - Idetify and discuss the key functionalities and benefits of an ORM
   - `200 OK`
   - Message: `Comment with ID: '{comment_id}' deleted! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+![Delete existing comment](./docs/endpoint%20examples/delete_existing_comment.png)
+---
+
 R6 - ERD
+
 R7 - Third party services
+
 R8 - Describe project models in terms of relationships
+
 R9 - Describe the database relations implemented in your application
+
 R10 - Describe the way tasks are allocated and tracked
