@@ -3,10 +3,11 @@
 R1 - Identification of problem
 R2 - Why is it a problem that needs solving?
 R3 - Why have you chosen this database system? What are the drawbacks compared to others?
-R4 - Indetify and discuss the key functionalities and benefits of an ORM
-# R5 - Endpoints
+R4 - Idetify and discuss the key functionalities and benefits of an ORM
+
+# R5 - API Endpoints
 - Users endpoints
-    - Register new user
+    - [Register new user](#1-register-new-user)
     - Login as existing user
     - Get all users
     - Get all threads by all users
@@ -26,9 +27,9 @@ R4 - Indetify and discuss the key functionalities and benefits of an ORM
     - Create new comment on thread (by thread_id)
     - Update existing comment (by comment_id)
     - Delete existing comment (by comment_id)
-    
+
 ### Users endpoints
-1. Register new user
+#### 1. Register new user
 - Endpoint: `/users/register`
 - HTTP verb: `POST`
 - Required data:
@@ -43,7 +44,7 @@ R4 - Indetify and discuss the key functionalities and benefits of an ORM
   - `Access token` (with 6 hour expiry)
 - Authentication method: None
 
-1. Login as existing user
+#### 1. Login as existing user
 - Endpoint: `/users/login`
 - HTTP verb: `POST`
 - Required data:
