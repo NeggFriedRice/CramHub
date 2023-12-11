@@ -104,6 +104,8 @@ Some key functionalities of ORMs include:
 
 Some key benefits of ORMs include:
 - Abstracts away database complexity: meaning that developers can focus on the application logic instead of having to spend time writing SQL queries
+- Platform agnostic: most ORMs support different database platforms allowing developers to switch databases without having to overhaul all their code
+- Enhanced security: ORMs often have built-in protection against SQL injection attacks which can help to mitigate security risks
 - 
 ## R5 - API Endpoints
 - Users endpoints
