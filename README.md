@@ -81,9 +81,30 @@ It's extremely time consuming to trawl through the huge mountain of guides, walk
 The CramHub project aims to reduce this time investment that is required before any substantial learning can even begin.
 
 ## R3 - Why did I choose this database system (and comparison to others)? 
+The database system I have chosen for this project is PostgreSQL. PostgreSQL is one of the more popular and well-regarded open-source databases and has a robust feature set including the ability for writing database functions using Python, which has been the language used for this project. Additionally, PostgreSQL has built-in cascading functions which has been especially useful for this project which deletes all comments that are attached to a thread when a thread is deleted.
+
+PostgreSQL also supports a long list of data types, full-text search and can handle large amounts of data which will be useful if this project needs to be further extended in the future.
+
+Additionally, PostgreSQL has authentication, access control and privilege management systems which are vital in assigning authorisation functionality to database access which is important to any project that has multiple users that require different levels of authorisation.
+
+Some areas where PostgreSQL falls short of the competition include:
+- PostgreSQL may have slightly lower write performance compared to other databases that were designed for high write performance such as MongoDB
+- PostgreSQL may have a steeper learning curve compared to other databases such as MySQL which is another popular open-source database with a large community that is known to be easy to use
+- PostgreSQL may consume more resources compared to other databases which should be considered in a resource-constrained environment, SQLite may be better suited if this is a consideration
 
 ## R4 - Key functionalities and benefits of an ORM
+Object relational mapping (ORM) is a technique that connects object oriented programming (OOP) to relational databases and can help to simplify the interaction between relational databases and different OOP languages, such as Python.
 
+Some key functionalities of ORMs include:
+- Object mapping to database tables: meaning the ORM will establish a bridge between object classes and database tables 
+- CRUD operations: ORMs can provide methods and functions to Create, Read, Update and Delete objects within a database
+- Query language: allows developers to query a database using high level languages, such as Python in this project, to retrieve data rather than having to write pure SQL statements
+- Data validation: ORMs can enforce data validation rules defined in the object classes which ensures data consistency and integrity
+- Relationship mapping: ORMs manage the object-table relationships including one-to-one, one-to-many and many-to-many relationships
+
+Some key benefits of ORMs include:
+- Abstracts away database complexity: meaning that developers can focus on the application logic instead of having to spend time writing SQL queries
+- 
 ## R5 - API Endpoints
 - Users endpoints
     - [Register new user](#1-register-new-user)
@@ -109,6 +130,7 @@ The CramHub project aims to reduce this time investment that is required before 
 
 ### Users endpoints
 #### 1. Register new user
+Register a new user which will be added to the database. An access token will be presented to the user upon successful registration
 - Endpoint: `/users/register`
 - HTTP verb: `POST`
 - Required data:
@@ -126,6 +148,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 2. Login as existing user
+Log in as existing user. An access token will be presented to the user upon successful login
 - Endpoint: `/users/login`
 - HTTP verb: `POST`
 - Required data:
@@ -140,6 +163,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 3. Get all users
+Retrieves all users in the database
 - Endpoint: `/users`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -151,6 +175,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 4. Get all threads by all users
+Retrieves all threads grouped by user 
 - Endpoint: `/users/threads`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -162,6 +187,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 5. Get all threads by single user (by user_id)
+Retrieves all threads submitted by a single user (by user_id)
 - Endpoint: `/users/<int:user_id>/threads`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -173,6 +199,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 6. Get all comments by all users
+Retrieves all comments grouped by user
 - Endpoint: `/users/comments`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -185,6 +212,7 @@ The CramHub project aims to reduce this time investment that is required before 
 
 ### Threads endpoints
 #### 7. Get all threads
+Retrieves all threads in the database
 - Endpoint: `/threads`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -196,6 +224,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 8. Get a single thread (by thread_id)
+Retrieves a single thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -207,6 +236,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 9. Get all threads (by category)
+Retrieves all threads that match the category given in the URL
 - Endpoint: `/threads/<str:category>`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -218,6 +248,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 10. Create new thread
+Create a new thread which will be added to the database
 - Endpoint: `/threads`
 - HTTP verb: `POST`
 - Required data:
@@ -234,6 +265,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 11. Updating existing thread (by thread_id)
+Update an existing thread in the database (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `PUT`, `PATCH`
 - Required data:
@@ -250,6 +282,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 12. Delete existing thread (by thread_id)
+Delete an existing thread from the database (by thread_id)
 - Endpoint: `/threads/<int:thread_id>`
 - HTTP verb: `DELETE`
 - Required data:`None`
@@ -263,6 +296,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ### Comments endpoints
 
 #### 13. Get all comments
+Retrieves all comments in the database
 - Endpoint: `/comments`
 - HTTP verb: `GET`
 - Required data: `None`
@@ -274,6 +308,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 14. Create new comment on thread (by thread_id)
+Create a new comment on a thread (by thread_id)
 - Endpoint: `/threads/<int:thread_id>/comments`
 - HTTP verb: `POST`
 - Required data:
@@ -288,6 +323,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 15. Update existing comment (by comment_id)
+Update an existing comment in the database (by comment_id)
 - Endpoint: `/comments/<int:comment_id>`
 - HTTP verb: `PUT`, `PATCH`
 - Required data:
@@ -302,6 +338,7 @@ The CramHub project aims to reduce this time investment that is required before 
 ---
 
 #### 16. Delete existing comment (by comment_id)
+Delete an existing comment in the database (by comment_id)
 - Endpoint: `/comments/<int:comment_id>`
 - HTTP verb: `DELETE`
 - Required data:`None`
