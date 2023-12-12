@@ -106,7 +106,7 @@ Some key benefits of ORMs include:
 - Abstracts away database complexity: meaning that developers can focus on the application logic instead of having to spend time writing SQL queries
 - Platform agnostic: most ORMs support different database platforms allowing developers to switch databases without having to overhaul all their code
 - Enhanced security: ORMs often have built-in protection against SQL injection attacks which can help to mitigate security risks
-- 
+
 ## R5 - API Endpoints
 - Users endpoints
     - [Register new user](#1-register-new-user)
@@ -356,6 +356,26 @@ Delete an existing comment in the database (by comment_id)
 ![Cramhub ERD](./docs/cramhubERD.png)
 
 ## R7 - Third party services
+#### Flask
+Flask is a web micro-framework used to develop web applications using Python with a small and easy-to-extend core. Flask is based on the Werkzeug WSGI toolkit and the Jinja2 template engine and allows apps to use requests, response objects and utility functions.
+
+#### SQLAlchemy
+SQLAlchemy is a toolkit that allows developers to efficiently access a relational database, currently supporting a number of database engines include SQLite, MySQL and PostgreSQL. SQLAlchemy also provides an object relational mapper (ORM) allowing developers to query and handle the data from the database.
+
+#### PostgreSQL
+PostgreSQL is an open-source object-relational database management system that supports a large part of the SQL standard as well as JSON querying. For more information about PostgreSQL and why this was chosen, please see R4.
+
+#### marshmallow
+Marshmallow is an integration layer for Flask where marshmallow is an object serialisation/deserialisation library which also supports integration with SQLAlchemy. In this project marshmallow has been used to validate data configuration according to pre-defined schemas. Some additional validation includes data input needing to belong to a category (OneOf function) and requiring passwords to be over 6 characters long (Length function)
+
+#### Psycopg2
+Psycopg2 is the most popular PostgreSQL database adapter for Python allowing developers to have detailed control over SQL queries and database interactions. 
+
+#### Bcrypt
+Bcrypt is a cryptographic hash function designed for one-way password hashing and transforms a user's password into a fixed-length character hash. In this project Bcrypt is used to hash passwords upon registration and login routes.
+
+#### JWT Extended
+JWT Extended is a package that adds support for using JSON Web Tokens to Flask for protecting routes. In this project the `jwt_required` and `get_jwt_identity` functions have been used on some routes ensuring that a user has a valid JWT is present as their user ID from the JWT is needed to link a thread or comment to their user account and to ensure they have authorisation to update or delete their own content from the database. 
 
 ## R8 - Project models relationships
 
