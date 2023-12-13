@@ -146,6 +146,7 @@ Register a new user which will be added to the database. An access token will be
   - Message: `User {name} has been registered! 🙂`
   - `Access token` (with 6 hour expiry)
 - Authentication method: None
+
 ![Register new user](./docs/endpoint%20examples/register_new_user.png)
 ---
 
@@ -161,6 +162,7 @@ Log in as existing user. An access token will be presented to the user upon succ
   - Return `user` and `token`
   - Message: `Successfully logged in! 🙂`
 - Authentication method: If the user exists, the submitted password will be hashed (via Bcrypt) and compared to the hashed password in the database
+
 ![Login as existing user](./docs/endpoint%20examples/login_as_existing_user.png)
 ---
 
@@ -173,6 +175,7 @@ Retrieves all users in the database
   - `200 OK`
   - Return list of users excluding: `password`, `admin`, `threads`, `comments`
 - Authentication method: `None`
+
 ![Get all user](./docs/endpoint%20examples/get_all_users.png)
 ---
 
@@ -185,6 +188,7 @@ Retrieves all threads grouped by user
   - `200 OK`
   - Return list of users excluding: `id`, `password`, `admin`, `comments`
 - Authentication method: `None`
+
 ![Get all threads by all users](./docs/endpoint%20examples/get_all_threads_by_all_users.png)
 ---
 
@@ -197,6 +201,7 @@ Retrieves all threads submitted by a single user (by user_id)
   - `200 OK`
   - Return list of threads that belong to a single user excluding: `comments`
 - Authentication method: `None`
+
 ![Get all threads by single user](./docs/endpoint%20examples/get_all_threads_by_single_user.png)
 ---
 
@@ -209,6 +214,7 @@ Retrieves all comments grouped by user
   - `200 OK`
   - Return list of comments by all users
 - Authentication method: `None`
+
 ![Get all comments by all users](./docs/endpoint%20examples/get_all_comments_by_all_users.png)
 ---
 
@@ -222,6 +228,7 @@ Retrieves all threads in the database
   - `200 OK`
   - Return list of threads excluding: `comments`
 - Authentication method: `None`
+
 ![Get all threads](./docs/endpoint%20examples/get_all_threads.png)
 ---
 
@@ -234,6 +241,7 @@ Retrieves a single thread (by thread_id)
   - `200 OK`
   - Return single thread
 - Authentication method: `None`
+
 ![Get a single thread](./docs/endpoint%20examples/get_single_thread.png)
 ---
 
@@ -246,6 +254,7 @@ Retrieves all threads that match the category given in the URL
   - `200 OK`
   - Return all threads that match the requested category
 - Authentication method: `None`
+
 ![Get all threads by category](./docs/endpoint%20examples/get_all_threads_by_category.png)
 ---
 
@@ -263,6 +272,7 @@ Create a new thread which will be added to the database
   - Return thread data excluding: `user`, `comments`
   - Message: `Thread submitted! 🙂`
 - Authentication: Current JWT
+
 ![Create new thread](./docs/endpoint%20examples/create_new_thread.png)
 ---
 
@@ -280,6 +290,7 @@ Update an existing thread in the database (by thread_id)
   - Return updated thread data excluding: `date`, `user`, `comments`
   - Message: `Thread {title} has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+
 ![Update existing thread](./docs/endpoint%20examples/update_existing_thread.png)
 ---
 
@@ -292,6 +303,7 @@ Delete an existing thread from the database (by thread_id)
   - `200 OK`
   - Message: `Thread {title} deleted! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original thread
+
 ![Delete existing thread](./docs/endpoint%20examples/delete_existing_thread.png)
 ---
 
@@ -306,6 +318,7 @@ Retrieves all comments in the database
   - `200 OK`
   - Return list of comments 
 - Authentication method: `None`
+
 ![Get all comments](./docs/endpoint%20examples/get_all_comments.png)
 ---
 
@@ -321,6 +334,7 @@ Create a new comment on a thread (by thread_id)
   - Return comment data
   - Message: `Comment submitted! 🙂`
 - Authentication: Current JWT
+
 ![Create new comment on thread](./docs/endpoint%20examples/create_new_comment.png)
 ---
 
@@ -336,6 +350,7 @@ Update an existing comment in the database (by comment_id)
   - Return updated thread data excluding: `user`
   - Message: `Comment with ID: '{comment_id}' has been updated! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original comment
+
 ![Update existing comment](./docs/endpoint%20examples/update_existing_comment.png)
 ---
 
@@ -348,6 +363,7 @@ Delete an existing comment in the database (by comment_id)
   - `200 OK`
   - Message: `Comment with ID: '{comment_id}' deleted! 🙂`
 - Authentication: Current JWT, JWT user id must match user id that created original comment
+
 ![Delete existing comment](./docs/endpoint%20examples/delete_existing_comment.png)
 ---
 
