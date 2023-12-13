@@ -11,8 +11,8 @@ class User(db.Model):
     email = db.Column(db.String(), nullable=False, unique=True)
     cohort = db.Column(db.String(), nullable=False)
     admin = db.Column(db.Boolean, default=False)
-    threads = db.relationship("Thread", back_populates="user")
-    comments = db.relationship("Comment", back_populates="user")
+    threads = db.relationship("Thread", back_populates="user", cascade="all, delete")
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete")
 
 # User schema
 class UserSchema(ma.Schema):

@@ -366,18 +366,41 @@ SQLAlchemy is a toolkit that allows developers to efficiently access a relationa
 PostgreSQL is an open-source object-relational database management system that supports a large part of the SQL standard as well as JSON querying. For more information about PostgreSQL and why this was chosen, please see R4.
 
 #### marshmallow
-Marshmallow is an integration layer for Flask where marshmallow is an object serialisation/deserialisation library which also supports integration with SQLAlchemy. In this project marshmallow has been used to validate data configuration according to pre-defined schemas. Some additional validation includes data input needing to belong to a category (OneOf function) and requiring passwords to be over 6 characters long (Length function)
+Marshmallow is an integration layer for Flask where marshmallow is an object serialisation/deserialisation library which also supports integration with SQLAlchemy and a range of data validation functions. In this project marshmallow has been used to validate data configuration according to pre-defined schemas. Some examples of data validation in this project include data input needing to belong to a list of categories (OneOf function), requiring passwords to be over 6 characters long (Length function) and ensuring that submitted values are not blank (Length function)
 
 #### Psycopg2
-Psycopg2 is the most popular PostgreSQL database adapter for Python allowing developers to have detailed control over SQL queries and database interactions. 
+Psycopg2 is the most popular PostgreSQL database adapter for Python allowing developers to perform the full range of SQL operations against PostgreSQL databases. In this project the Psycopg2 connector can be found in the `.flaskenv_sample` file. 
 
 #### Bcrypt
-Bcrypt is a cryptographic hash function designed for one-way password hashing and transforms a user's password into a fixed-length character hash. In this project Bcrypt is used to hash passwords upon registration and login routes.
+Bcrypt is a cryptographic hash function designed for one-way password hashing and transforms a user's password into a fixed-length character hash. In this project Bcrypt is used to hash passwords upon registration and login routes; for the login route the hashed input password is compared with the hashed password stored in the database.
 
 #### JWT Extended
 JWT Extended is a package that adds support for using JSON Web Tokens to Flask for protecting routes. In this project the `jwt_required` and `get_jwt_identity` functions have been used on some routes ensuring that a user has a valid JWT is present as their user ID from the JWT is needed to link a thread or comment to their user account and to ensure they have authorisation to update or delete their own content from the database. 
 
 ## R8 - Project models relationships
+#### User model
+- The User model represents a user in this project which can be summarised with a user story: *"As a user I want to be able to submit threads and add my ratings and reviews to threads so that I can share my input with others."*
+
+The user model has a one-to-many relationship with threads as well as a one-to-many relationship with comments where a single user can create multiple threads and multiple comments. This is represented as the user's `id` defined as a foreign key in both the threads and comments models.
+
+The user model uses the cascade function for both threads and comments meaning that if a user account is deleted (not implemented in this project), their threads and comments will also be deleted from the system.
+
+#### Thread model
+- The Thread model represents the threads that are submitted to the database by a user which can be summarised with a user story: *"As a user, I want to be able to submit threads that will also show ratings and reviews from other users, so that I can share my input with others".*
+
+The thread model has a many-to-one relationship with users where a user can submit to multiple threads; the user `id` is defined as the foreign key in the thread model. 
+
+The thread model has a one-to-many relationship with comments where a single thread can have multiple comments.
+
+The thread model uses the cascade function for comments meaning that if a user deletes their thread, all comments attached to that thread will also be deleted from the system.
+
+#### Comment model
+- The comments model represents the ratings and reviews that are submitted to a thread by a user which can be summarised with the user story: *"As a user, I want to be able to add comments to threads, so that I can share my input with others."*
+
+The comments model has a many-to-one relationship with threads, as one comment can only belong to
+thread, but a thread can have many comments; the thread `id` is used as a foreign key in the comments table. 
+
+The comments model has a many-to-one relationship with users, as a comment can only belong to one user, but a user can have many comments; the user `id` is used as a foreign key in the comments table.
 
 ## R9 - Database relations
 
