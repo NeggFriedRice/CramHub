@@ -357,19 +357,19 @@ Delete an existing comment in the database (by comment_id)
 
 ## R7 - Third party services
 #### Flask
-Flask is a web micro-framework used to develop web applications using Python with a small and easy-to-extend core. Flask is based on the Werkzeug WSGI toolkit and the Jinja2 template engine and allows apps to use requests, response objects and utility functions.
+Flask is a web micro-framework used to develop web applications using Python with a small and easy-to-extend core. Flask is based on the Werkzeug WSGI toolkit and the Jinja2 template engine and allows apps to use requests, response objects and utility functions. Flask has been used as the basis for this application and further extended by installing other packages such as Flask SQLAlchemy, Flask Marshmallow, Flask JWT Extendeded and Flask Bcrypt.
 
 #### SQLAlchemy
-SQLAlchemy is a toolkit that allows developers to efficiently access a relational database, currently supporting a number of database engines include SQLite, MySQL and PostgreSQL. SQLAlchemy also provides an object relational mapper (ORM) allowing developers to query and handle the data from the database.
+SQLAlchemy is a toolkit that allows developers to efficiently access a relational database, currently supporting a number of database engines include SQLite, MySQL and PostgreSQL. SQLAlchemy also provides an object relational mapper (ORM) allowing developers to query and handle the data from the database. SQLAlchemy is used to create a database object which can be found in the `init.py` file and the `db` instance is used extensively throughout the project.
 
 #### PostgreSQL
-PostgreSQL is an open-source object-relational database management system that supports a large part of the SQL standard as well as JSON querying. For more information about PostgreSQL and why this was chosen, please see R4.
+PostgreSQL is an open-source object-relational database management system that supports a large part of the SQL standard as well as JSON querying. PostgreSQL was used to create the database (cramhub_db) for this project, the connection to the PostgreSQL database can be found in the .env_sample file. For more information about PostgreSQL and why this was chosen, please see R4.
 
 #### marshmallow
 Marshmallow is an integration layer for Flask where marshmallow is an object serialisation/deserialisation library which also supports integration with SQLAlchemy and a range of data validation functions. In this project marshmallow has been used to validate data configuration according to pre-defined schemas. Some examples of data validation in this project include data input needing to belong to a list of categories (OneOf function), requiring passwords to be over 6 characters long (Length function) and ensuring that submitted values are not blank (Length function)
 
 #### Psycopg2
-Psycopg2 is the most popular PostgreSQL database adapter for Python allowing developers to perform the full range of SQL operations against PostgreSQL databases. In this project the Psycopg2 connector can be found in the `.flaskenv_sample` file. 
+Psycopg2 is the most popular PostgreSQL database adapter for Python allowing developers to perform the full range of SQL operations against PostgreSQL databases. In this project the Psycopg2 connector can be found in the `.env_sample` file. 
 
 #### Bcrypt
 Bcrypt is a cryptographic hash function designed for one-way password hashing and transforms a user's password into a fixed-length character hash. In this project Bcrypt is used to hash passwords upon registration and login routes; for the login route the hashed input password is compared with the hashed password stored in the database.
@@ -424,19 +424,27 @@ thread, but a thread can have many comments; the thread `id` is used as a foreig
 - The `user_id` which is the id from the users table and the `thread_id` which is the id from the threads table are defined as the foreign keys in the comments table.
 
 ## R10 - Project Management
+[Trello board link](https://trello.com/invite/b/wjbJPawX/ATTI65c77529b3d0c46444f64c53a09f27f4BF335E83/t2a2-api-web-server)
+
+#### Build phase
 The project management tool used for this project was a Trello kanban board and created 'To do', 'In progress' and 'Done' categories.
 
 I first laid out my main requirements for this project so I would have a better view of the project as a whole and to assist with time management. The first few tasks I undertook were planning tasks to reduce the incidence of surprises later down the track:
 - Draw ERD for app
 - Plan estimated API endpoints (11)
 
-The first part after planning was creating the actual database, so these tasks were completed next:
-- Create database
-- Create users
+The first part after planning was creating the actual database, so these tasks were completed next.
 
-The part following was creating the blueprints, models and schemas so that I could retrieve or accept data via an API request. After these were done the routes could start being worked on.
+The part following was creating the blueprints, models and schemas so that I could retrieve or accept data via an API request. After these were done the routes could start being worked on. 
 
-The final parts of creating this app was adding the relationships between the models and adding authentication by way of the JWT extended library.
+Throughout the build phase I was constantly testing my API routes, with each new type of error I encountered I made sure to add error handlers (in main.py) to catch these errors and highlight to the user what went wrong.
+
+The final parts of creating this app was adding the relationships between the models and adding authentication by way of the JWT extended library. As a final task I also added validation to the models to ensure that there was some control over what data was being sent to the database.
+
+#### Challenges
+While the plan was somewhat straight forward, I did encounter some challenges with building the application. I had some issues with the authorisation blueprint whereby the authorisation function was not recognising that the JWT identity matched the user id for a thread or comment; after some debugging I found that the JWT identity is passed in as a string, while the user id stored in the database was an integer.
+
+Additionally, I had some confusion as to why deleting a single thread as user 1 would delete all of user 1's threads; this turned out to be the `cascade` function which I was too liberal with. Encountering this issue highlighted and solidified my understanding of how the cascade function works.
 
 ![Day1](./docs/trello/1.png)
 ![Day1.5](./docs/trello/2.png)
