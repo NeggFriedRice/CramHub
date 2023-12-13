@@ -381,47 +381,47 @@ JWT Extended is a package that adds support for using JSON Web Tokens to Flask f
 #### User model
 - The User model represents a user in this project which can be summarised with a user story: *"As a user I want to be able to submit threads and add my ratings and reviews to threads so that I can share my input with others."*
 
-The user model has a one-to-many relationship with threads as well as a one-to-many relationship with comments where a single user can create multiple threads and multiple comments. This is represented as the user's `id` defined as a foreign key in both the threads and comments models using the `db.relationship` function and threads and comments both back populate to the user model.
+- The user model has a one-to-many relationship with threads as well as a one-to-many relationship with comments where a single user can create multiple threads and multiple comments. This is represented as the user's `id` defined as a foreign key in both the threads and comments models using the `db.relationship` function and threads and comments both back populate to the user model.
 
-The user model uses the cascade function for both threads and comments meaning that if a user account is deleted (not implemented in this project), their threads and comments will also be deleted from the system.
+- The user model uses the cascade function for both threads and comments meaning that if a user account is deleted (not implemented in this project), their threads and comments will also be deleted from the system.
 
-The user model also has nested threads and comments fields.
+- The user model also has nested threads and comments fields.
 
 #### Thread model
 - The Thread model represents the threads that are submitted to the database by a user which can be summarised with a user story: *"As a user, I want to be able to submit threads that will also show ratings and reviews from other users, so that I can share my input with others".*
 
-The thread model has a many-to-one relationship with users where a user can submit to multiple threads; the user `id` is defined as the foreign key in the thread model and back populates to the user model. 
+- The thread model has a many-to-one relationship with users where a user can submit to multiple threads; the user `id` is defined as the foreign key in the thread model and back populates to the user model. 
 
-The thread model has a one-to-many relationship with comments where a single thread can have multiple comments.
+- The thread model has a one-to-many relationship with comments where a single thread can have multiple comments.
 
-The thread model uses the cascade function for comments meaning that if a user deletes their thread, all comments attached to that thread will also be deleted from the system.
+- The thread model uses the cascade function for comments meaning that if a user deletes their thread, all comments attached to that thread will also be deleted from the system.
 
-The thread model also has nested user and comments fields.
+- The thread model also has nested user and comments fields.
 
 #### Comment model
 - The comments model represents the ratings and reviews that are submitted to a thread by a user which can be summarised with the user story: *"As a user, I want to be able to add comments to threads, so that I can share my input with others."*
 
-The comments model has a many-to-one relationship with threads, as one comment can only belong to
+- The comments model has a many-to-one relationship with threads, as one comment can only belong to
 thread, but a thread can have many comments; the thread `id` is used as a foreign key in the comments table and back populates to the threads and users models.
 
-The comments model has a many-to-one relationship with users, as a comment can only belong to one user, but a user can have many comments; the user `id` is used as a foreign key in the comments table.
+- The comments model has a many-to-one relationship with users, as a comment can only belong to one user, but a user can have many comments; the user `id` is used as a foreign key in the comments table.
 
-The comment model also has nested user and thread fields.
+- The comment model also has nested user and thread fields.
 
 ## R9 - Database relations
 #### User one-to-many relationship with threads and comments
-The user model creates a one-to-many relationship with both the threads and comments model by the `db.relationship` function. The threads and comments models are linked back to the user model by the `back_populates` function. Both threads and comments relationships that belong to a user will be deleted if a user account is deleted by using the `cascade="all, delete"` function.
+- The user model creates a one-to-many relationship with both the threads and comments model by the `db.relationship` function. The threads and comments models are linked back to the user model by the `back_populates` function. Both threads and comments relationships that belong to a user will be deleted if a user account is deleted by using the `cascade="all, delete"` function.
 
 #### Threads many-to-one relationship with users
-The threads model creates a many-to-one relationship with the users model by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. The `user_id` is defined as the foreign key in the threads table which is the `id` from the users table.
+- The threads model creates a many-to-one relationship with the users model by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. The `user_id` is defined as the foreign key in the threads table which is the `id` from the users table.
 
 #### Threads one-to-many relationship with comments
-The threads model creates a one-to-many relationship with the comments model by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. All comments that belong to a thread will be deleted if a thread is deleted by using the `cascade="all, delete"` function.
+- The threads model creates a one-to-many relationship with the comments model by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. All comments that belong to a thread will be deleted if a thread is deleted by using the `cascade="all, delete"` function.
 
 #### Comments many-to-one relationship with users and threads
-The comments model creates a many-to-one relationship with the users and threads models by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. 
+- The comments model creates a many-to-one relationship with the users and threads models by the `db.relationship` function and establishes a two way relationship with the `back_populates` function. 
 
-The `user_id` which is the id from the users table and the `thread_id` which is the id from the threads table are defined as the foreign keys in the comments table.
+- The `user_id` which is the id from the users table and the `thread_id` which is the id from the threads table are defined as the foreign keys in the comments table.
 
 ## R10 - Project Management
 The project management tool used for this project was a Trello kanban board and created 'To do', 'In progress' and 'Done' categories.
