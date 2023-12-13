@@ -424,3 +424,23 @@ The comments model creates a many-to-one relationship with the users and threads
 The `user_id` which is the id from the users table and the `thread_id` which is the id from the threads table are defined as the foreign keys in the comments table.
 
 ## R10 - Project Management
+The project management tool used for this project was a Trello kanban board and created 'To do', 'In progress' and 'Done' categories.
+
+I first laid out my main requirements for this project so I would have a better view of the project as a whole and to assist with time management. The first few tasks I undertook were planning tasks to reduce the incidence of surprises later down the track:
+- Draw ERD for app
+- Plan estimated API endpoints (11)
+
+The first part after planning was creating the actual database, so these tasks were completed next:
+- Create database
+- Create users
+
+The part following was creating the blueprints, models and schemas so that I could retrieve or accept data via an API request. After these were done the routes could start being worked on.
+
+The final parts of creating this app was adding the relationships between the models and adding authentication by way of the JWT extended library.
+
+![Day1](./docs/trello/1.png)
+![Day1.5](./docs/trello/2.png)
+![Day2](./docs/trello/3.png)
+![Day3](./docs/trello/4.png)
+![Day4](./docs/trello/5.png)
+![Day5](./docs/trello/6.png)
