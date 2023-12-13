@@ -463,8 +463,13 @@ While the plan was somewhat straight forward, I did encounter some challenges wi
 Additionally, I had some confusion as to why deleting a single thread as user 1 would delete all of user 1's threads; this turned out to be the `cascade` function which I was too liberal with. Encountering this issue highlighted and solidified my understanding of how the cascade function works.
 
 ![Day1](./docs/trello/1.png)
+
 ![Day1.5](./docs/trello/2.png)
+
 ![Day2](./docs/trello/3.png)
+
 ![Day3](./docs/trello/4.png)
+
 ![Day4](./docs/trello/5.png)
+
 ![Day5](./docs/trello/6.png)
