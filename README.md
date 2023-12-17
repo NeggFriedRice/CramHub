@@ -51,6 +51,10 @@ R10 - [Project Management](#r10---project-management)
 - Grant all permissions on database schemas to admin user
 - `grant all on schema public to cramhub_dev;`
 
+#### Application Environment files
+- Create a new `.flaskenv` file and change the included code in the `.flaskenv_sample` file to suit your needs
+- Create a new `.env` file and change the included code in the `.env_sample` file to suit your needs
+
 #### Create tables, seed database and run Flask application
 - Open a WSL terminal (exit out of PostgreSQL if still open)
 - Create the tables
@@ -59,10 +63,6 @@ R10 - [Project Management](#r10---project-management)
 - `flask db seed`
 - Run the Flask app
 - `flask run`
-
-#### Application Environment files
-- Create a new `.flaskenv` file and change the included code in the `.flaskenv_sample` file to suit your needs
-- Create a new `.env` file and change the included code in the `.env_sample` file to suit your needs
 ---
 
 ## R1 - Problem I'm trying to solve
