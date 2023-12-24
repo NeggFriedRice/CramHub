@@ -1,0 +1,287 @@
+[33mcommit aa6d69afc39f2c882d24968c144b5e7dd7557f11[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Thomas Loo <tom@TomsPC>
+Date:   Sun Dec 17 18:22:15 2023 +1100
+
+    Re-arrange .env .flaskenv file position in install guide
+
+[33mcommit d4d43fa7bab68b993f18835f6dc39769305758ee[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 23:19:55 2023 +1100
+
+    Fix repository link in README
+
+[33mcommit 4a6c9bdf07654eb36b21986de791d60c7e15358d[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 23:18:52 2023 +1100
+
+    Add repository link to README
+
+[33mcommit 54114eb6c035af8d20a79065c693a3ca63ec2a7a[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 15:22:34 2023 +1100
+
+    Fix inline pictures for R10
+
+[33mcommit 6382371b87084794c58a44335776e5b912809051[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 15:21:02 2023 +1100
+
+    Fix inline pictures in README
+
+[33mcommit 8f11eaa51b70dacf698fe036c5819e49ba52b7ee[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 15:18:04 2023 +1100
+
+    Remove pyc files from index
+
+[33mcommit ba388225a52594ce8eaa3a7bc7f142d328f22354[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 15:15:53 2023 +1100
+
+    Finish README
+
+[33mcommit 1aa7ce3c8abe58d638af99016687217c6fb25fdd[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 13:08:01 2023 +1100
+
+    Add formatting issues on README
+
+[33mcommit 3a9b639db6cb4a7599b19c68d25bb005f96d1f51[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 13:05:16 2023 +1100
+
+    Add R10 README
+
+[33mcommit 00b19a61eb09039772a9451b168b1e317c13f808[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 12:48:32 2023 +1100
+
+    Add R9 README
+
+[33mcommit edda7c1d97b411d5025eafabbc94e491af687d8f[m
+Author: tom <tomloo222@gmail.com>
+Date:   Wed Dec 13 12:04:08 2023 +1100
+
+    Add R8 README
+
+[33mcommit 4cb00db476630d7674fc32b4456540ecb4e44589[m
+Author: tom <tomloo222@gmail.com>
+Date:   Tue Dec 12 16:06:22 2023 +1100
+
+    Update R7 README
+
+[33mcommit cfe3d8c1ccea92bb213b2f3e79898dafb60660a1[m
+Author: tom <tomloo222@gmail.com>
+Date:   Tue Dec 12 02:53:32 2023 +1100
+
+    Update R4 response
+
+[33mcommit 0254786b99f96c384ce9e4e90e33236a2e58bcd4[m
+Author: tom <tomloo222@gmail.com>
+Date:   Tue Dec 12 02:37:21 2023 +1100
+
+    Update README responses
+
+[33mcommit f0bb8e20055e0aa6a7d76e836dffdb73ab64c02b[m
+Author: tom <tomloo222@gmail.com>
+Date:   Mon Dec 11 00:38:03 2023 +1100
+
+    R1 edit README
+
+[33mcommit 3faf7add7853a258983d9fee5c8b4c60417194b1[m
+Author: tom <tomloo222@gmail.com>
+Date:   Mon Dec 11 00:31:54 2023 +1100
+
+    Add updates to R1 and R2 in README
+
+[33mcommit 093b72ba1da34382c21966305cec3d345d4d9217[m
+Author: tom <tomloo222@gmail.com>
+Date:   Mon Dec 11 00:24:32 2023 +1100
+
+    Fix intro
+
+[33mcommit 4afaa2d4a91e13a7f50ce3f69c21adc167f44779[m
+Author: tom <tomloo222@gmail.com>
+Date:   Mon Dec 11 00:23:00 2023 +1100
+
+    Directory, R1 and R2 added to README
+
+[33mcommit 0ac25a2021daaeeb54d377615d7350eb3109c027[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 23:30:30 2023 +1100
+
+    Add sample .flaskenv and .env files to install guide
+
+[33mcommit 35cfee610adf7d6928feff8582524110e144794d[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 23:20:57 2023 +1100
+
+    Remove .flaskenv and .env files
+
+[33mcommit bae9af808082c706c7049c0043163db41e04cbba[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 23:18:03 2023 +1100
+
+    Add install guide to README
+
+[33mcommit a0e38218f1464aa83f8b3ae5a52af3c695b733ea[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 14:40:12 2023 +1100
+
+    Add screenshot examples to endpoints
+
+[33mcommit fb55099d177641013f5db1dd70ec1cc9ad15d430[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 14:28:11 2023 +1100
+
+    Test image upload to README
+
+[33mcommit 0714330f96a83ef405f9628e80cc79a40907e170[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 14:25:26 2023 +1100
+
+    Add endpoints contents section
+
+[33mcommit bc1faccab19a075d608e00f49c1821f1fb55daf4[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 11:41:25 2023 +1100
+
+    Update README
+
+[33mcommit 603721ab6685d3b5aaa64b8950099d5620e8fe45[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 11:29:13 2023 +1100
+
+    Add endpoints to README
+
+[33mcommit 9aa2f571217d620aff3c9bac399aa8c299a735ef[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sun Dec 10 10:43:27 2023 +1100
+
+    Fix circular import bug. Add endpoints to README
+
+[33mcommit a6b363def7bef634c543bf7cd4b7b24dfcbcfbf2[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 17:11:51 2023 +1100
+
+    Rearrange imports alphbetically
+
+[33mcommit 80717503df19cc74d5e0777fda2bbf52f4e88146[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 17:05:41 2023 +1100
+
+    Add comments to auth blueprint and comments, threads and users models
+
+[33mcommit 67efa90fb62523c1c3f1374349aea4c7208e5045[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 16:51:39 2023 +1100
+
+    Fix auth abort status code. Add custom errorhandler in main for 401
+
+[33mcommit 1ff422678d9d1bebd2e5c10049c65f368959f14c[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 16:37:54 2023 +1100
+
+    Add comments to users blueprint
+
+[33mcommit d82b3e745875baf18e6ac3751eb2c2838a7d5719[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 16:10:20 2023 +1100
+
+    Add comments to thread blueprints
+
+[33mcommit aa7fd6788eaa7bf5c607c6f047008c179ddf39dd[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 15:35:02 2023 +1100
+
+    Add comments to comments_bp
+
+[33mcommit 90cb1d21aaf7e310432b1113b21abec0cf232901[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 15:01:21 2023 +1100
+
+    Fix delete comment and thread cascade bug
+
+[33mcommit 242c231a18483e7267e15d906f9d6658d1461925[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 11:51:52 2023 +1100
+
+    Move user login and registration from auth_bp to users_bp
+
+[33mcommit bc7aad0b7747bf9ae91b6df706724a9e1a1d6d8b[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 00:23:31 2023 +1100
+
+    Add trello day updates
+
+[33mcommit 85929e795b5d7f4ae24bf093146cb56685717382[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 00:21:18 2023 +1100
+
+    Fix authorisation function
+
+[33mcommit 7ac72bf33c8c2ff8fef2c382bfa660d736e96413[m
+Author: tom <tomloo222@gmail.com>
+Date:   Sat Dec 9 00:02:57 2023 +1100
+
+    Uppercase-ify category field from incoming thread create route to satisfy OneOf validation
+
+[33mcommit d06449ce13414fe1fc105f18e5a208b9e937d7d7[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 23:55:18 2023 +1100
+
+    Troubleshoot authorise function
+
+[33mcommit 34790786fa431e202acbb248ab0a35cb69caf037[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 17:17:44 2023 +1100
+
+    Add validators to threads and comments blueprints
+
+[33mcommit 7dae4cdfa0ebed7485cd4d88caf00bfe29860a1e[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 15:57:51 2023 +1100
+
+    Add KeyError, ValidationError and BadRequest error handlers
+
+[33mcommit 4ef40ce280d77f17eb26409a1a1dba8154eba296[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 15:30:01 2023 +1100
+
+    Add get threads by category route
+
+[33mcommit 99c21ac4b6052bab0cba1af8b9c761eb3f9f8c51[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 14:12:22 2023 +1100
+
+    Add create comment on thread (by id) route
+
+[33mcommit 657d1514e4c1d73c1a241e57a760fb4b0b684ac0[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 13:45:32 2023 +1100
+
+    Reorder comment fields
+
+[33mcommit c0f6695da93250f6f70bdf588f06b10e1657100b[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 12:48:52 2023 +1100
+
+    Create get single thread route
+
+[33mcommit c86e2b3b151aa236bfd1c1b06ed7f9307118d450[m
+Author: tom <tomloo222@gmail.com>
+Date:   Fri Dec 8 12:26:08 2023 +1100
+
+    Add nested comments to threads
+
+[33mcommit a4932e93f85c7efa869e8744c1ce76e92908afac[m
+Author: Thomas Loo <tom@TomsPC>
+Date:   Thu Dec 7 18:15:39 2023 +1100
+
+    Update route function names for brevity. Add resources folder for README
+
+[33mcommit 6d671182882e7dc950412852e84b6d999cdbd090[m
+Author: Thomas Loo <tom@TomsPC>
+Date:   Thu Dec 7 17:47:33 2023 +1100
+
+    
