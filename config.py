@@ -17,7 +17,8 @@ class ProductionConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    
+
+# Create environment settings based on development setting
 environment = os.environ.get("FLASK_ENV")
 if environment == "production":
     app_config = ProductionConfig()

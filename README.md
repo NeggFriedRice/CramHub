@@ -1,7 +1,7 @@
 # T2A2 - API Web Server Project - CramHub
 Hello! Thanks for visiting the CramHub repository!
 
-CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that is highly rated by peers can be easily found.
+CramHub is a web server and API project that allows anyone studying coding concepts to submit any content they've found online and letting other students add a rating and review with the aim that meaningful and helpful content that is highly rated by peers can be easily found
 
 #### [GitHub repository](https://github.com/NeggFriedRice/CramHub)
 ---
@@ -38,6 +38,8 @@ R10 - [Project Management](#r10---project-management)
 - `code .`
 - Install the dependencies
 - `pip install -r requirements.txt`
+- Install PostgresSQL
+- `sudo apt install postgresql postgresql-contrib`
 
 #### Create a PostgreSQL database and admin user
 - Open a WSL terminal and open PostgreSQL 
@@ -59,6 +61,8 @@ R10 - [Project Management](#r10---project-management)
 - Open a WSL terminal (exit out of PostgreSQL if still open)
 - Create the tables
 - `flask db create`
+- If you encounter any issues with Flask running type the below command to export the setup function:
+- `export FLASK_APP=app:setup`
 - Seed the tables with data
 - `flask db seed`
 - Run the Flask app
